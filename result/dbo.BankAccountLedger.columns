@@ -1,0 +1,8 @@
+"name","type","length","leftDigits","rightDigits"
+"Id","STRING","0","0","0"
+"Date","STRING","0","0","0"
+"AccNo","STRING","0","0","0"
+"LedgerNo","STRING","0","0","0"
+"Label","STRING","0","0","0"
+"Debit","STRING","0","0","0"
+"Credit","STRING","0","0","0"

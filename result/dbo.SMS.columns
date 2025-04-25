@@ -1,0 +1,4 @@
+"name","type","length","leftDigits","rightDigits"
+"Id","STRING","0","0","0"
+"Message","STRING","0","0","0"
+"Date","STRING","0","0","0"

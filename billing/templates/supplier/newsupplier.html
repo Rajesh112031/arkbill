@@ -1,0 +1,103 @@
+{% extends 'base/base.html' %}
+
+{% block body %}
+  <div class="container p-5 ">
+    <h1 class="mb-3">New Supplier</h1>
+    {% if form.errors %}
+      {% include 'base/error.html' %}
+    {% endif %}
+    <form method="POST" enctype="multipart/form-data" action="{% url 'billing:supplier_entry' %}" class="scroll-space">
+      {% csrf_token %}
+
+      <div class="modal-title-head mb-4">
+        <h6>Supplier profile</h6>
+      </div>
+      <div class="new-employee-field mb-4">
+        <div class="profile-pic-upload">
+            <!-- Profile Picture Upload Section -->
+            <div class="profile-pic text-center mb-3">
+                <label for="id_profile_img" class="d-block">
+                    <span class="d-inline-flex align-items-center">
+                        <i data-feather="plus-circle" class="plus-down-add me-2"></i> 
+                        Add Image
+                    </span>
+                </label>
+            </div>
+            
+            <!-- File Input Field -->
+            <div class="image-upload mb-0">
+                <input 
+                    type="file" 
+                    id="id_profile_img" 
+                    name="profile_img" 
+                    class="form-control"
+                    accept="image/*"
+                />
+            </div>
+            
+            <!-- Change Image Section -->
+            <div class="image-uploads mt-2 text-center">
+                <h4>Change Image</h4>
+            </div>
+        </div>
+        
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4 mb-3">
+          <label class="form-label">Supplier Name*</label>
+          {{ form.supplier_name }}
+        </div>
+        <div class="col-lg-4 mb-3">
+          <label class="form-label">Supplier Sub Name</label>
+          {{ form.supplier_sub_name }}
+        </div>
+        <div class="col-lg-4 mb-3">
+          <label class="form-label">Supplier ID*</label>
+          {{ form.supplier_id }}
+        </div>
+        <div class="col-lg-4 mb-3">
+          <label class="form-label">Email</label>
+          {{ form.supplier_email }}
+        </div>
+        <div class="col-lg-4 mb-3">
+          <label class="form-label">Phone</label>
+          {{ form.supplier_phone }}
+        </div>
+        <div class="col-lg-12 mb-3">
+          <label class="form-label">Address</label>
+          {{ form.supplier_address }}
+        </div>
+        <div class="col-lg-6 mb-3">
+          <label class="form-label">City</label>
+          {{ form.supplier_city }}
+        </div>
+        <div class="col-lg-6 mb-3">
+          <label class="form-label">State</label>
+          {{ form.supplier_state }}
+        </div>
+        <div class="col-lg-12 mb-3">
+          <label class="form-label">GST/UID</label>
+          {{ form.supplier_gst_or_uid }}
+        </div>
+        <div class="col-lg-12 mb-3">
+          <label class="form-label">PAN</label>
+          {{ form.supplier_pan }}
+        </div>
+        {% comment %} <div class="col-lg-12 mb-3">
+          <label class="form-label">Account Balance</label>
+          {{ form.supplier_account_balance }}
+        </div> {% endcomment %}
+        <div class="col-lg-12 mb-3">
+          <label class="form-label">Description</label>
+          {{ form.supplier_description }}
+          <small>Maximum 60 characters</small>
+        </div>
+      </div>
+
+      <div class="text-end mt-4">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

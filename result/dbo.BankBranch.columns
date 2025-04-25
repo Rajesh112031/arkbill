@@ -1,0 +1,8 @@
+"name","type","length","leftDigits","rightDigits"
+"Id","STRING","0","0","0"
+"BranchName","STRING","0","0","0"
+"Address","STRING","0","0","0"
+"ContactNo","STRING","0","0","0"
+"SwiftCode","STRING","0","0","0"
+"IFSCCode","STRING","0","0","0"
+"BankName","STRING","0","0","0"

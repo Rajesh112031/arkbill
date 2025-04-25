@@ -1,0 +1,111 @@
+
+{% extends 'base/base.html' %}
+{% load humanize %}
+{% block body %}
+<div class="content">
+  <div class="page-header">
+    <div class="d-flex justify-content-between align-items-center w-100">
+      <div>
+        <h4>Reports</h4>
+        <h6>Purchase Stock Report</h6>
+      </div>
+    </div>
+  </div>
+
+  <form method="get">
+    <div class="row">
+        <div class="col-md-6">
+          <label for="invoice_no">Invoice No</label>
+          <input type="text" class="form-control mb-3" name="invoice_no" value="{{ invoice_no }}">
+        </div>
+        <div class="col-md-6">
+          <label for="supplier_name">Supplier Name</label>
+          <input type="text" class="form-control mb-3" name="supplier_name" value="{{ supplier_name }}">
+        </div>
+        <div class="col-md-6">
+          <label for="start_date">Start Date</label>
+          <input type="date" class="form-control mb-3" name="start_date" value="{{ start_date }}">
+        </div>
+        <div class="col-md-6">
+          <label for="end_date">End Date</label>
+          <input type="date" class="form-control mb-3" name="end_date" value="{{ end_date }}">
+        </div>
+      </div>
+
+    <button type="submit" class="btn btn-info">Filter</button>
+  </form>
+
+  <div class="card mt-4">
+    <div class="card-header">
+      <h5>Purchase List</h5>
+    </div>
+    <div class="card-body">
+      {% if reports %}
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Purchase Bill ID</th>
+            <th>Supplier</th>
+            <th>Invoice No</th>
+            <th>Invoice Date</th>
+            <th>Total Units</th>
+            <th>Total Amount</th>
+            <th>Total Discount</th>
+            <th>Total Tax</th>
+            <th>Purchase Type</th>
+            <th>Remarks</th>
+            <th>Created At</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for purchase in reports %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ purchase.purchase_bill_id }}</td>
+            <td>
+              {% if purchase.supplier %}
+                {{ purchase.supplier.supplier_name }}
+              {% else %}
+                N/A
+              {% endif %}
+            </td>
+            <td>{{ purchase.invoice_no }}</td>
+            <td>{{ purchase.invoice_date|date:"Y-m-d" }}</td>
+            <td>{{ purchase.total_units }}</td>
+            <td>₹ {{ purchase.total_amount|intcomma }}</td>
+            <td>₹ {{ purchase.total_discount_amount|intcomma }}</td>
+            <td>₹ {{ purchase.total_tax_amount|intcomma }}</td>
+            <td>{{ purchase.purchase_type|title }}</td>
+            <td>{{ purchase.remarks|default:"-" }}</td>
+            <td>{{ purchase.created_at|date:"Y-m-d H:i" }}</td>
+            <td>
+              {% comment %} <a href="{% url 'billing:purchase_detail' purchase.id %}" class="btn btn-info btn-sm">View</a> {% endcomment %}
+              {# Uncomment below lines if you add edit or delete functionality #}
+              {# <a href="{% url 'billing:purchase_edit' purchase.id %}" class="btn btn-warning btn-sm">Edit</a> #}
+              {# <a href="{% url 'billing:purchase_delete' purchase.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?');">Delete</a> #}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+        <p>No purchases found for the selected filters.</p>
+      {% endif %}
+    </div>
+
+    {% include "base/pagination.html" %}
+  </div>
+
+  <div class="card mt-3">
+    <div class="card-body">
+      <h5 class="card-title text-primary">Total Grand Amount</h5>
+      <p class="card-text h4">
+        ₹ {{ total_grand|floatformat:2 }}
+      </p>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

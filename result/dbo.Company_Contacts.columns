@@ -1,0 +1,4 @@
+"name","type","length","leftDigits","rightDigits"
+"Id","STRING","0","0","0"
+"ContactPerson","STRING","0","0","0"
+"ContactNo","STRING","0","0","0"

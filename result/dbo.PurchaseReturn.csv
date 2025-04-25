@@ -1,0 +1,2 @@
+"PR_ID","PRNo","Date","PurchaseID","SubTotal","CGST","SGST","IGST","FreightCharges","OtherCharges","Total","RoundOff","GrandTotal"
+"1","PR-0001                       ","2024-03-12 00:00:00","42","18620.80","1623.68","1623.68","0.00","0.00","0.00","21868.16","-0.16","21868.00"

@@ -1,0 +1,133 @@
+{% extends "base/base.html" %}
+{% block body %}
+<div class="content">
+  <div class="page-header">
+    <div class="d-flex justify-content-between align-items-center w-100">
+      <div>
+        <h4>Purchased Stocks</h4>
+        <h6>Manage purchased stock products</h6>
+      </div>
+      <div>
+        <a href="{% url 'billing:purchased_stock_entry' %}" class="btn btn-primary">
+          <i data-feather="plus-circle" class="me-2 "></i>Add New Stocks
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mt-4">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table ">
+          <thead class="table-light">
+            <tr>
+              <th>#</th>
+              <th>Product</th>
+              <th>HSN</th>
+              <th>Pack Size</th>
+              <th>MRP</th>
+              <th>Sales Price</th>
+              <th>Units</th>
+              <th>Batch No</th>
+              <th>SGST</th>
+              <th>CGST</th>
+              <th>IGST</th>
+              <th>Total Quantity</th>
+              <th>Total Price</th>
+              <th>Grand Total</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for product in products %}
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ product.product.product_name }}</td>
+                <td>{{ product.hsn }}</td>
+                <td>{{ product.pack_size }}</td>
+                <td>{{ product.mrp }}</td>
+                <td>{{ product.sales_price }}</td>
+                <td>{{ product.units }}</td>
+                <td>{{ product.batch_no }}</td>
+                <td>{{ product.sgst_percentage }}% (₹{{ product.sgst_amount }})</td>
+                <td>{{ product.cgst_percentage }}% (₹{{ product.cgst_amount }})</td>
+                <td>{{ product.igst_percentage }}% (₹{{ product.igst_amount }})</td>
+                <td>{{ product.total_quantity }}</td>
+                <td>₹{{ product.total_price }}</td>
+                <td>₹{{ product.grandTotal }}</td>
+                <td>
+                  <a href="#" data-bs-toggle="modal" data-bs-target="#view-product-{{ product.id }}" class="btn btn-sm btn-info">View</a>
+                </td>
+              </tr>
+
+              <!-- Modal for Viewing Product Details -->
+              <div class="modal fade" id="view-product-{{ product.id }}" tabindex="-1" aria-labelledby="viewProductLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="viewProductLabel">Product Details</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <p><strong>Product Name:</strong> {{ product.product.product_name }}</p>
+                        </div>
+                        <div class="col-md-6">
+                          <p><strong>HSN:</strong> {{ product.hsn }}</p>
+                        </div>
+                        <div class="col-md-6">
+                          <p><strong>Pack Size:</strong> {{ product.pack_size }}</p>
+                        </div>
+                        <div class="col-md-6">
+                          <p><strong>MRP:</strong> ₹{{ product.mrp }}</p>
+                        </div>
+                        <div class="col-md-6">
+                          <p><strong>Sales Price:</strong> ₹{{ product.sales_price }}</p>
+                        </div>
+                        <div class="col-md-6">
+                          <p><strong>Units:</strong> {{ product.units }}</p>
+                        </div>
+                        <div class="col-md-6">
+                          <p><strong>Batch No:</strong> {{ product.batch_no }}</p>
+                        </div>
+                        <div class="col-md-6">
+                          <p><strong>SGST:</strong> {{ product.sgst_percentage }}% (₹{{ product.sgst_amount }})</p>
+                        </div>
+                        <div class="col-md-6">
+                          <p><strong>CGST:</strong> {{ product.cgst_percentage }}% (₹{{ product.cgst_amount }})</p>
+                        </div>
+                        <div class="col-md-6">
+                          <p><strong>IGST:</strong> {{ product.igst_percentage }}% (₹{{ product.igst_amount }})</p>
+                        </div>
+                        <div class="col-md-6">
+                          <p><strong>Total Quantity:</strong> {{ product.total_quantity }}</p>
+                        </div>
+                        <div class="col-md-6">
+                          <p><strong>Total Price:</strong> ₹{{ product.total_price }}</p>
+                        </div>
+                        <div class="col-md-6">
+                          <p><strong>Grand Total:</strong> ₹{{ product.grandTotal }}</p>
+                        </div>
+                        <div class="col-md-12">
+                          <p><strong>Manufacturing Date:</strong> {{ product.manufacturing|date:"d M, Y" }}</p>
+                          <p><strong>Expiring Date:</strong> {{ product.expiring|date:"d M, Y" }}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      {% include "base/pagination.html" %}
+    </div>
+  </div>
+</div>
+{% endblock %}

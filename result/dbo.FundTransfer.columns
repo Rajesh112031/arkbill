@@ -1,0 +1,8 @@
+"name","type","length","leftDigits","rightDigits"
+"Id","STRING","0","0","0"
+"AccountTransFrom","STRING","0","0","0"
+"AccountTransTo","STRING","0","0","0"
+"Amount","STRING","0","0","0"
+"Date","STRING","0","0","0"
+"Operator","STRING","0","0","0"
+"Notes","STRING","0","0","0"

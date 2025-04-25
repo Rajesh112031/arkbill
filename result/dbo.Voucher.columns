@@ -1,0 +1,7 @@
+"name","type","length","leftDigits","rightDigits"
+"Id","STRING","0","0","0"
+"VoucherNo","STRING","0","0","0"
+"Name","STRING","0","0","0"
+"Date","STRING","0","0","0"
+"Details","STRING","0","0","0"
+"GrandTotal","STRING","0","0","0"

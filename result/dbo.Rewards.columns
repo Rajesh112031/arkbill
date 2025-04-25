@@ -1,0 +1,4 @@
+"name","type","length","leftDigits","rightDigits"
+"ID","STRING","0","0","0"
+"GenerateRewards","STRING","0","0","0"
+"ClaimLimit","STRING","0","0","0"

@@ -1,0 +1,258 @@
+{% load static %}
+<!DOCTYPE html>
+
+{% comment %} data-layout-style-> box, collapsed, horizontal, modern {% endcomment %} {% comment %}
+data-nav-color-> light, grey, dark {% endcomment %}
+
+<html lang="en" data-layout-mode="light_mode" data-layout-style="collapsed" data-nav-color="grey">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>ARK Billing</title>
+
+  <script>
+    // Function to set theme
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-layout-mode', theme); // Set the attribute on the <html> element
+      localStorage.setItem('theme', theme); // Save theme to localStorage
+    }
+
+    // Function to toggle theme
+    function toggleTheme() {
+      const currentTheme = localStorage.getItem('theme') || 'light_mode';
+      const newTheme = currentTheme === 'light_mode' ? 'dark_mode' : 'light_mode';
+      setTheme(newTheme);
+    }
+
+    // On page load, apply the saved theme
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme') || 'light_mode'; // Default to light mode
+      setTheme(savedTheme);
+    });
+  </script>
+
+		{% comment %}  {% endcomment %}
+
+		{% comment %}
+		<script
+			src="https://dreamspos.dreamstechnologies.com/html/template/assets/js/theme-script.js"
+			type="1de0fd024c4fefa474e61cb6-text/javascript"
+		></script>
+		{% endcomment %}
+
+
+		<!-- Favicon -->
+		<link
+			rel="shortcut icon"
+			href="{% static 'asset/images/ARK_logo-02.png' %}"
+			type="image/x-icon"
+		/>
+
+		<!-- prloader contents -->
+		<link rel="preload" href="{% static 'asset/images/cat preloader.gif' %}" as="image" />
+		<link rel="preload" href="{% static 'asset/images/ARK_logo-01.png' %}" as="image" />
+
+		<style>
+			/* Preloader Styling */
+			#ARKpreloader {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-color: white;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				z-index: 9999;
+			}
+
+			#ARKpreloader img {
+				width: 150px; /* Adjust image size */
+				height: auto;
+			}
+		</style>
+
+		<script>
+			// Wait for the entire page to load
+			window.addEventListener("load", () => {
+				const preloader = document.getElementById("ARKpreloader");
+				// const content = document.getElementById("content");
+
+				// Hide preloader and show content
+				setTimeout(() => {
+					preloader.style.display = "none";
+					// content.style.display = "block";
+				}, 500);
+			});
+		</script>
+
+		<!-- Bootstrap CSS -->
+		<link
+			rel="stylesheet"
+			href="https://dreamspos.dreamstechnologies.com/html/template/assets/css/bootstrap.min.css"
+		/>
+
+		<!-- Datetimepicker CSS -->
+		<link
+			rel="stylesheet"
+			href="https://dreamspos.dreamstechnologies.com/html/template/assets/css/bootstrap-datetimepicker.min.css"
+		/>
+
+		<!-- animation CSS -->
+		<link
+			rel="stylesheet"
+			href="https://dreamspos.dreamstechnologies.com/html/template/assets/css/animate.css"
+		/>
+
+		<!-- Select2 CSS -->
+		<link
+			rel="stylesheet"
+			href="https://dreamspos.dreamstechnologies.com/html/template/assets/plugins/select2/css/select2.min.css"
+		/>
+
+		<!-- Fontawesome CSS -->
+		<link
+			rel="stylesheet"
+			href="https://dreamspos.dreamstechnologies.com/html/template/assets/plugins/fontawesome/css/fontawesome.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://dreamspos.dreamstechnologies.com/html/template/assets/plugins/fontawesome/css/all.min.css"
+		/>
+
+		<!-- Main CSS -->
+		{% comment %}
+		<link
+			rel="stylesheet"
+			href="https://dreamspos.dreamstechnologies.com/html/template/assets/css/style.css"
+		/>
+		{% endcomment %} {% comment %}
+		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+		{% endcomment %}
+
+		<link rel="stylesheet" href="{% static 'css/style1.css' %}" />
+
+		{% comment %} extra styles {% endcomment %}
+		<style>
+			input::-webkit-outer-spin-button,
+			input::-webkit-inner-spin-button {
+				-webkit-appearance: none;
+				margin: 0;
+			}
+
+			/* Firefox */
+			input[type="number"] {
+				-moz-appearance: textfield;
+			}
+			{% comment %} stock search {% endcomment %}
+				.dropdown-container {
+					position: absolute;
+					background-color: white;
+					border: 1px solid #ccc;
+					width: 100%;
+					max-height: 200px;
+					overflow-y: auto;
+					z-index: 1000;
+				}
+
+				.dropdown-list {
+					list-style: none;
+					margin: 0;
+					padding: 0;
+				}
+
+				.dropdown-item {
+					padding: 10px;
+					cursor: pointer;
+				}
+
+				.dropdown-item:hover {
+					background-color: #f0f0f0;
+				}
+
+			{% comment %} stock search {% endcomment %}
+		</style>
+		{% comment %} extra styles {% endcomment %}
+	</head>
+
+	<body>
+		<!-- ARK Preloader -->
+		<div id="ARKpreloader">
+			<img src="{% static 'asset/images/cat preloader.gif' %}" alt="Loading..." />
+			<img
+				id="arkpreloader"
+				src="{% static 'asset/images/ARK_logo-01.png' %}"
+				alt="ARK Loading..."
+			/>
+		</div>
+
+		{% include 'base/navbar.html' %} {% include 'base/sidebar.html' %}
+
+		<!-- Main Wrapper -->
+		<div class="main-wrapper">
+			<div class="page-wrapper">{% block body %}{% endblock body %}</div>
+		</div>
+		<!-- Main Wrapper -->
+
+		<!-- jQuery -->
+		<script
+			src="https://dreamspos.dreamstechnologies.com/html/template/assets/js/jquery-3.7.1.min.js"
+			type="1de0fd024c4fefa474e61cb6-text/javascript"
+		></script>
+
+		<!-- Feather Icon JS -->
+		<script
+			src="https://dreamspos.dreamstechnologies.com/html/template/assets/js/feather.min.js"
+			type="1de0fd024c4fefa474e61cb6-text/javascript"
+		></script>
+
+		<!-- Slimscroll JS -->
+		<script
+			src="https://dreamspos.dreamstechnologies.com/html/template/assets/js/jquery.slimscroll.min.js"
+			type="1de0fd024c4fefa474e61cb6-text/javascript"
+		></script>
+
+		<!-- Bootstrap Core JS -->
+		<script
+			src="https://dreamspos.dreamstechnologies.com/html/template/assets/js/bootstrap.bundle.min.js"
+			type="1de0fd024c4fefa474e61cb6-text/javascript"
+		></script>
+
+		<!-- Chart JS -->
+		<script
+			src="https://dreamspos.dreamstechnologies.com/html/template/assets/plugins/apexchart/apexcharts.min.js"
+			type="1de0fd024c4fefa474e61cb6-text/javascript"
+		></script>
+		<script
+			src="https://dreamspos.dreamstechnologies.com/html/template/assets/plugins/apexchart/chart-data.js"
+			type="1de0fd024c4fefa474e61cb6-text/javascript"
+		></script>
+
+		<!-- Sweetalert 2 -->
+		<script
+			src="https://dreamspos.dreamstechnologies.com/html/template/assets/plugins/sweetalert/sweetalert2.all.min.js"
+			type="1de0fd024c4fefa474e61cb6-text/javascript"
+		></script>
+		<script
+			src="https://dreamspos.dreamstechnologies.com/html/template/assets/plugins/sweetalert/sweetalerts.min.js"
+			type="1de0fd024c4fefa474e61cb6-text/javascript"
+		></script>
+
+		<!-- Custom JS -->
+
+		<script
+			src="https://dreamspos.dreamstechnologies.com/html/template/assets/js/script.js"
+			type="1de0fd024c4fefa474e61cb6-text/javascript"
+		></script>
+
+		<script
+			src="https://dreamspos.dreamstechnologies.com/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+			data-cf-settings="1de0fd024c4fefa474e61cb6-|49"
+			defer
+		></script>
+	</body>
+</html>

@@ -1,0 +1,631 @@
+{% extends "base/base.html" %} {% load static %} {% block body %}
+<div class="content p-0">
+	<div class="modal-header border-0 custom-modal-header">
+		<div class="page-title">
+			<h4>Bill</h4>
+		</div>
+	</div>
+	<div class="card">
+		<div class="card-body">
+			<div>
+				<div class="row">
+					<div class="col-lg-4 col-sm-6 col-12">
+						<div class="input-blocks">
+							<label>Customer Name</label>
+							<div class="row">
+								<div class="col-lg-10 col-sm-10 col-10">
+									<select class="form-select" name="customer_name">
+										<option>Choose</option>
+										<option>Customer Name</option>
+									</select>
+								</div>
+								<div class="col-lg-2 col-sm-2 col-2 ps-0">
+									<div class="add-icon">
+										<a href="#" class="choose-add"
+											><i data-feather="plus-circle" class="plus"></i
+										></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-4 col-sm-6 col-12">
+						<div class="input-blocks">
+							<label>Customer Contact</label>
+							<div class="input-groupicon select-code">
+								<input type="text" class="form-select" name="customer_contact" disabled />
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-sm-6 col-12">
+						<div class="input-blocks">
+							<label>Customer State</label>
+							<div class="input-groupicon select-code">
+								<input type="text" class="form-select" name="customer_state" disabled />
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3 col-12">
+						<div class="input-blocks">
+							<label>Date</label>
+							<div class="input-groupicon calender-input">
+								{% comment %} <i data-feather="calendar" class="info-img"></i>
+								{%endcomment %}
+								<input type="date" class="form-control" name="date"  placeholder="Choose" />
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-3 col-12">
+							<div class="input-blocks">
+								<label>Product Name</label>
+								<div class="input-groupicon select-code">
+									<input
+										type="text"
+										placeholder="Please type product code and select"
+										class="p-3"
+										name="product_name"									
+									/>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-3 col-12">
+							<div class="input-blocks">
+								<label>HSN</label>
+								<input
+									type="text"
+									placeholder="Please type NSN"
+									class="p-3"
+									name="hsn"		
+								/>
+							</div>
+						</div>
+						<div class="col-sm-3 col-12">
+							<div class="input-blocks">
+								<label>Batch</label>
+								<input type="text" placeholder="Stock Batch"  name="batch"/>
+							</div>
+						</div>
+						<div class="col-sm-3 col-12">
+							<div class="input-blocks">
+								<label>Stocks Available</label>
+								<div class="input-groupicon select-code">
+									<input
+										type="text"
+										placeholder="Available Stocks"
+										class="p-3"
+										name="stock_available"
+									/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-12 text-light">
+						<div class="input-blocks">
+							<label for=""></label>
+							<div class="row">
+								<div class="col">
+									<div class="row">
+										<div class="form-floating mb-3">
+											<input
+												type="number"
+												class="form-control ps-3"
+												id="mrp"
+												placeholder="Actual Prize" name="mrp" oninput="calculateTotalPrize()"
+											/>
+											<label for="mrp" class="ms-2">MRP</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-floating mb-3">
+											<input
+												type="number"
+												class="form-control ps-3"
+												id="mrp"
+												placeholder="Sales Prize"
+												name="sales_price"
+												oninput="calculateTotalPrize()"
+											/>
+											<label for="mrp" class="ms-2">Sales Prize</label>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="row">
+										<div class="form-floating mb-3">
+											<input
+												type="number"
+												class="form-control ps-3"
+												id="mrp"
+												placeholder="Enter Quantity"
+												oninput="calculateTotalPrize()"
+												name="quantity"
+											/>
+											<label for="mrp" class="ms-2">Quantity</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-floating mb-3">
+											<input
+												type="number"
+												class="form-control ps-3"
+												id="mrp"
+												placeholder="Discount Quantity"
+												name="free_quantity"
+												oninput="calculateTotalPrize()"
+											/>
+											<label for="mrp" class="ms-2">Free Quantity</label>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="row">
+										<div class="form-floating mb-3">
+											<input
+												type="number"
+												class="form-control ps-3"
+												id="mrp"
+												placeholder="Discount Percentage"
+												name="discount_percentage"
+												oninput="calculateTotalPrize()"
+											/>
+											<label for="mrp" class="ms-2">Discount %</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-floating mb-3">
+											<input
+												type="number"
+												class="form-control ps-3"
+												id="mrp"
+												placeholder="Discount Amount"
+												name="discount_amount"
+											/>
+											<label for="mrp" class="ms-2">Discount Amt.</label>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="row">
+										<div class="form-floating mb-3">
+											<input
+												type="number"
+												class="form-control ps-3"
+												id="mrp"
+												placeholder="Added Discount %"
+												name="added_discount"
+												oninput="calculateTotalPrize()"
+											/>
+											<label for="mrp" class="ms-2">Added Dis %</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-floating mb-3">
+											<input
+												type="number"
+												class="form-control ps-3"
+												id="mrp"
+												placeholder="Added Discount Amount"
+												name="added_discount_amount"
+											/>
+											<label for="mrp" class="ms-2">Added Dis Amt.</label>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="row">
+										<div class="form-floating mb-3">
+											<input
+												type="number"
+												class="form-control ps-3"
+												id="mrp"
+												placeholder="SGST %"
+												name="sgst"
+												oninput="calculateTotalPrize()"
+											/>
+											<label for="mrp" class="ms-2">SGST %</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-floating mb-3">
+											<input
+												type="number"
+												class="form-control ps-3"
+												id="mrp"
+												placeholder="SGST Amt."
+												name="sgst_amount"
+												oninput="calculateTotalPrize()"
+											/>
+											<label for="mrp" class="ms-2">SGST Amt.</label>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="row">
+										<div class="form-floating mb-3">
+											<input
+												type="number"
+												class="form-control ps-3"
+												id="mrp"
+												placeholder="CGST %"
+												name="cgst"
+												oninput="calculateTotalPrize()"
+											/>
+											<label for="mrp" class="ms-2">CGST %</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-floating mb-3">
+											<input
+												type="number"
+												class="form-control ps-3"
+												id="mrp"
+												placeholder="CGST Amt."
+												oninput="calculateTotalPrize()"
+												name="cgst_amount"
+											/>
+											<label for="mrp" class="ms-2">CGST Amt.</label>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="row">
+										<div class="form-floating mb-3">
+											<input
+												type="number"
+												class="form-control ps-3"
+												id="mrp"
+												placeholder="IGST %"
+												name="igst"
+												oninput="calculateTotalPrize()"
+											/>
+											<label for="mrp" class="ms-2">IGST %</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-floating mb-3">
+											<input
+												type="number"
+												class="form-control ps-3"
+												id="mrp"
+												placeholder="IGST Amt."
+												oninput="calculateTotalPrize()"
+												name="igst_amount"
+											/>
+											<label for="mrp" class="ms-2">IGST Amt.</label>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="row">
+										<div class="form-floating mb-3">
+											<input
+												type="number"
+												class="form-control ps-3"
+												id="mrp"
+												placeholder="Total"
+												name="total_quantity"
+												
+											/>
+											<label for="mrp" class="ms-2">Total Qty</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-floating mb-3">
+											<input
+												type="number"
+												class="form-control ps-3"
+												id="totalPrice"
+												placeholder="Total"
+												name="total_price"
+											/>
+											<label for="mrp" class="ms-2">Total Prize</label>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-3 col-12">
+										<div class="input-blocks">
+											<label>Manufacturing Date</label>
+											<input
+												type="date"
+												placeholder="manufacturing date"
+												class="form-control"
+												name="manufacture"		
+											/>
+										</div>
+									</div>
+									<div class="col-sm-3 col-12">
+										<div class="input-blocks">
+											<label>Expiring Date</label>
+											<input
+												type="date"
+												placeholder="expiring date"
+												class="form-control"
+												name="expiring"		
+											/>
+										</div>
+									</div>
+                                    <div class="col-sm-3 col-12">
+										<div class="input-blocks">
+											<label>Barcode</label>
+											<input
+												type="text"
+												placeholder="please enter barcode"
+												class="forn-control"
+												name="barcode"		
+											/>
+										</div>
+									</div>
+									<div class="col-sm-3 col-12 mt-4">
+										<button type="button" class="btn btn-submit w-100" onclick="addToTable()">
+											Add Task
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="table-responsive no-pagination">
+					<table id="billTable" class="table">
+						<thead>
+							<tr>
+								<th class="product_name" rowspan="2">Product</th>
+								<th rowspan="2">Stocks Avail</th>
+								<th>Manufacturing Date</th>
+								<th>Batch</th>
+								<th>Quantity</th>
+								<th>Discount %</th>
+								<th>Added Dis %</th>
+								<th>SGST %</th>
+								<th>CGST %</th>
+								<th>IGST %</th>
+								<th>MRP</th>
+								<th>Tax</th>
+								<th rowspan="2">Total Qty</th>
+								<th rowspan="2">Total Price</th>
+							</tr>
+							<tr>
+								<th>Expiring Date</th>
+								<th>HSN</th>
+								<th>Free Quantity</th>
+								<th>Discount Amt.</th>
+								<th>Added Dis Amt.</th>
+								<th>SGST Amt.</th>
+								<th>CGST Amt.</th>
+								<th>IGST Amt</th>
+								<th>Sales Price</th>
+								<th>Discount</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td rowspan="2">Yummy</td>
+								<td rowspan="2">SC21</td>
+								<td rowspan="2">1000</td>
+								<td>%</td>
+								<td>Amt</td>
+								<td>%</td>
+								<td>Amt</td>
+								<td>%</td>
+								<td>Amt</td>
+								<td rowspan="2">Tax</td>
+								<td rowspan="2">Price</td>
+								<td rowspan="2">Discount</td>
+								<td rowspan="2">Total</td>
+							</tr>
+							<tr>
+								<td>%</td>
+								<td>Amt</td>
+								<td>%</td>
+								<td>Amt</td>
+								<td>%</td>
+								<td>Amt</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="row">
+					<div class="col-lg-6 ms-auto">
+						<div class="total-order w-100 max-widthauto m-auto mb-4">
+							<ul>
+								<li>
+									<h4>Tax</h4>
+									<input type="text" id="totalTax" class="form-control" value="0.00" disabled />
+								</li>
+								<li>
+									<h4>Price</h4>
+									<input type="text" id="totalPriceDisplay" class="form-control" value="0.00" disabled />
+								</li>
+								<li>
+									<h4>Discount</h4>
+									<input type="text" id="totalDiscount" class="form-control" value="0.00" disabled />
+								</li>
+								<li>
+									<h4>Grand Total</h4>
+									<input type="text" id="grandTotal" class="form-control" value="0.00" disabled />
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-3 col-12">
+						<div class="input-blocks">
+							<label>Payment Amount</label>
+							<div class="input-groupicon select-code">
+								<input type="text" class="p-3" placeholder="Paid Amount" />
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3 col-12">
+						<div class="input-blocks">
+							<label class="form-label">Payment Mode</label>
+							<select class="form-select">
+								<option>By Cash</option>
+								<option>By Card</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3 col-12">
+						<div class="input-blocks">
+							<label>Pay Date</label>
+							<div class="input-groupicon calender-input">
+								<input type="date" class="form-control" placeholder="Choose" />
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12 text-end">
+						<button type="submit" class="btn btn-submit add-sale">Checkout</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script>
+   // Function to calculate total price, tax, discount, and grand total
+function calculateTotalPrize() {
+    let mrp = parseFloat(document.querySelector('[name="mrp"]').value) || 0;
+    let salesPrice = parseFloat(document.querySelector('[name="sales_price"]').value) || 0;
+    let quantity = parseInt(document.querySelector('[name="quantity"]').value) || 0;
+    let freeQuantity = parseInt(document.querySelector('[name="free_quantity"]').value) || 0;
+    let discountPercentage = parseFloat(document.querySelector('[name="discount_percentage"]').value) || 0;
+    let addedDiscount = parseFloat(document.querySelector('[name="added_discount"]').value) || 0;
+    let sgst = parseFloat(document.querySelector('[name="sgst"]').value) || 0;
+    let cgst = parseFloat(document.querySelector('[name="cgst"]').value) || 0;
+    let igst = parseFloat(document.querySelector('[name="igst"]').value) || 0;
+
+    // Calculate total quantity (including free quantity)
+    let totalQuantity = quantity + freeQuantity;
+
+    // Calculate Discount Amount
+    let discountAmount = (salesPrice * discountPercentage) / 100;
+    let addedDiscountAmount = (salesPrice * addedDiscount) / 100;
+
+    // Calculate Taxes
+    let sgstAmount = (salesPrice * sgst) / 100;
+    let cgstAmount = (salesPrice * cgst) / 100;
+    let igstAmount = (salesPrice * igst) / 100;
+
+    // Calculate Final Price after discounts
+    let finalPrice = salesPrice - discountAmount - addedDiscountAmount;
+
+    // Calculate Total Price (Final Price * Total Quantity)
+    let totalPrice = finalPrice * totalQuantity;
+
+    // Calculate Tax (sum of SGST, CGST, IGST)
+    let totalTax = sgstAmount + cgstAmount + igstAmount;
+
+    // Grand Total (Total Price + Total Tax)
+    let grandTotal = totalPrice + totalTax;
+
+    // Display the calculated values in the form fields
+    document.querySelector('[name="total_quantity"]').value = totalQuantity;
+    document.querySelector('[name="total_price"]').value = totalPrice.toFixed(2);
+    document.querySelector('[name="discount_amount"]').value = discountAmount.toFixed(2);
+    document.querySelector('[name="added_discount_amount"]').value = addedDiscountAmount.toFixed(2);
+    document.querySelector('[name="sgst_amount"]').value = sgstAmount.toFixed(2);
+    document.querySelector('[name="cgst_amount"]').value = cgstAmount.toFixed(2);
+    document.querySelector('[name="igst_amount"]').value = igstAmount.toFixed(2);
+
+    // Update the summary section
+    document.getElementById('totalTax').value = totalTax.toFixed(2);
+    document.getElementById('totalPriceDisplay').value = totalPrice.toFixed(2);
+    document.getElementById('totalDiscount').value = (discountAmount + addedDiscountAmount).toFixed(2);
+    document.getElementById('grandTotal').value = grandTotal.toFixed(2);
+}
+
+function addToTable() {
+    // Retrieve input values
+    const product = document.querySelector('input[name="product_name"]').value;
+	const stockAvail = document.querySelector('input[name="stock_available"]').value;
+    const manufacture=document.querySelector('input[name="manufacture"]').value;
+	const expiring=document.querySelector('input[name="expiring"]').value;
+    const batch = document.querySelector('input[name="batch"]').value;
+	const hsn = document.querySelector('input[name="hsn"]').value;
+    const quantity = document.querySelector('input[name="quantity"]').value;
+	const freeQuantity = document.querySelector('input[name="free_quantity"]').value;
+    const discountPercentage = document.querySelector('input[name="discount_percentage"]').value;
+    const discountAmount = Math.round(document.querySelector('input[name="discount_amount"]').value);
+	const addedDiscount = document.querySelector('input[name="added_discount"]').value;
+	const addedDiscountAmount = Math.round(document.querySelector('input[name="added_discount_amount"]').value);
+    const sgst = document.querySelector('input[name="sgst"]').value;
+    const sgstAmount = Math.round(document.querySelector('input[name="sgst_amount"]').value);
+    const cgst = document.querySelector('input[name="cgst"]').value;
+    const cgstAmount = Math.round(document.querySelector('input[name="cgst_amount"]').value);
+    const igst = document.querySelector('input[name="igst"]').value;
+    const igstAmount = Math.round(document.querySelector('input[name="igst_amount"]').value);
+	const mrp = document.querySelector('input[name="mrp"]').value;
+	const salesPrice = document.querySelector('input[name="sales_price"]').value;
+    const totalPrice = Math.round(document.getElementById('totalPrice').value);
+    const totalDiscount = Math.round(document.getElementById('totalDiscount').value);
+    const totalTax = Math.round(document.getElementById('totalTax').value);
+	{% comment %} const totalQuantity = document.getElementById('totalQuantity').value; {% endcomment %}
+    const totalAmount = totalPrice + totalTax;
+    const totalQuantity = Number(quantity)  + Number(freeQuantity) ;
+    // Ensure required fields are filled before adding to the table
+    if (!product || !batch || !quantity || isNaN(parseFloat(totalAmount))) {
+        alert("Please fill in all required fields before adding to the table.");
+        return;
+    }
+
+    // Select the table's tbody to add new rows
+    const tableBody = document.getElementById('billTable').getElementsByTagName('tbody')[0];
+
+    // **First row (Main product details and percentage values)**
+    const newRow1 = tableBody.insertRow();
+    
+    newRow1.insertCell(0).rowSpan = 2;
+    newRow1.cells[0].innerText = product;  // Product name
+    
+    newRow1.insertCell(1).rowSpan = 2;
+    newRow1.cells[1].innerText = stockAvail;  // Batch
+    
+	newRow1.insertCell(2).innerText = manufacture;
+	newRow1.insertCell(3).innerText = batch;
+	newRow1.insertCell(4).innerText = quantity;
+    
+    newRow1.insertCell(5).innerText = discountPercentage + "%"; // Discount %
+	newRow1.insertCell(6).innerText = addedDiscount + "%";
+    newRow1.insertCell(7).innerText = sgst + "%"; // SGST %
+    newRow1.insertCell(8).innerText = cgst + "%"; // CGST %
+    newRow1.insertCell(9).innerText = igst + "%"; // IGST %
+    
+    newRow1.insertCell(10).innerText = mrp;
+	newRow1.insertCell(11).innerText = totalTax;
+
+    newRow1.insertCell(12).rowSpan = 2;
+    newRow1.cells[12].innerText = totalQuantity; // Grand Total
+    
+    newRow1.insertCell(13).rowSpan = 2;
+    newRow1.cells[13].innerText = totalPrice; // Price
+    
+    
+    
+   
+
+    // **Second row (Amount values)**
+    const newRow2 = tableBody.insertRow();
+
+    newRow2.insertCell(0).innerText = expiring;
+	newRow2.insertCell(1).innerText = hsn;
+	newRow2.insertCell(2).innerText = freeQuantity;
+    newRow2.insertCell(3).innerText = discountAmount;
+	newRow2.insertCell(4).innerText = addedDiscountAmount; // Discount Amount
+    newRow2.insertCell(5).innerText = sgstAmount; // SGST Amount
+    newRow2.insertCell(6).innerText = cgstAmount; // CGST Amount
+    newRow2.insertCell(7).innerText = igstAmount; // IGST Amount
+    newRow2.insertCell(8).innerText = salesPrice;
+	newRow2.insertCell(9).innerText = totalDiscount;
+    // Recalculate totals after adding an item
+
+	document.getElementById("Formbill").reset();
+
+    calculateTotalPrize();
+}
+</script>
+{% endblock body %}
+

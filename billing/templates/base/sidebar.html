@@ -1,0 +1,341 @@
+<!--{% load static %} <div class="sidebar collapsed-sidebar" id="collapsed-sidebar">-->
+<!--  <div class="sidebar-inner slimscroll">-->
+<!--    <div id="sidebar-menu-2" class="sidebar-menu sidebar-menu-three">-->
+<!--      <aside id="aside" class="ui-aside">-->
+<!--        <nav>-->
+<!--          <ul class="tab nav nav-tabs" id="myTab" role="tablist">-->
+<!--            <li class="nav-item" role="presentation">-->
+<!--              <a class="tablinks nav-link {% if request.resolver_match.url_name in 'dashboard bill_entry purchased_stock estimation_bill' %}active{% endif %}" href="#home" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" role="tab" aria-selected="true"><img src="{% static 'asset/icons/menu-icon.svg' %}" alt="" /></a>-->
+<!--            </li> <li class="nav-item" role="presentation">-->
+<!--              <a class="tablinks nav-link {% if request.resolver_match.url_name in 'report_bill report_stock report_stock_bill sales_report purchase_report report_stock_manufacture stack_startment margin_report' %}active{% endif %}" href="#report" id="set-tab7" data-bs-toggle="tab" data-bs-target="#reports" role="tab" aria-selected="true"><i data-feather="file-text"></i></a>-->
+<!--            </li> <li class="nav-item" role="presentation">-->
+<!--              <a class="tablinks nav-link {% if request.resolver_match.url_name in 'purchased_stock purchased_stock_entry purchased_stock_bill' %}active{% endif %}" href="#messages" id="messages-tab" data-bs-toggle="tab" data-bs-target="#product" role="tab" aria-selected="false"><img src="{% static 'asset/icons/product.svg' %}" alt="" /></a>-->
+<!--            </li> <li class="nav-item" role="presentation">-->
+<!--              <a class="tablinks nav-link {% if request.resolver_match.url_name in 'report_bill report_stock report_stock_bill sales_report purchase_report report_stock_manufacture stack_startment margin_report' %}active{% endif %}" href="#profile" id="profile-tab" data-bs-toggle="tab" data-bs-target="#sales" role="tab" aria-selected="false"><img src="{% static 'asset/icons/sales1.svg' %}" alt="" /></a>-->
+<!--            </li> <li class="nav-item" role="presentation">-->
+<!--              <a class="tablinks nav-link {% if request.resolver_match.url_name in 'bill_entry bill estimation_bill' %}active{% endif %}" href="#report" id="report-tab" data-bs-toggle="tab" data-bs-target="#purchase" role="tab" aria-selected="true"><img src="{% static 'asset/icons/purchase1.svg' %}" alt="" /></a>-->
+<!--            </li> <li class="nav-item" role="presentation">-->
+<!--              <a class="tablinks nav-link {% if request.resolver_match.url_name in 'customer_list customer_entry' %}active{% endif %}" href="#set" id="set-tab" data-bs-toggle="tab" data-bs-target="#user" role="tab" aria-selected="true"><img src="{% static 'asset/icons/users1.svg' %}" alt="" /></a>-->
+<!--            </li> <li class="nav-item" role="presentation">-->
+<!--              <a class="tablinks nav-link{% if request.resolver_match.url_name in 'supplier_list supplier_entry' %}active{% endif %}" href="#set2" id="set-tab2" data-bs-toggle="tab" data-bs-target="#employee" role="tab" aria-selected="true"><img src="{% static 'asset/icons/calendars.svg' %}" alt="" /></a>-->
+<!--            </li> <li class="nav-item" role="presentation">-->
+<!--              <a class="tablinks nav-link {% if request.resolver_match.url_name == 'shipping_view' %}active{% endif %}" href="#set5" id="set-tab6" data-bs-toggle="tab" data-bs-target="#permission" role="tab" aria-selected="true"><i data-feather="user"></i></a>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </nav>-->
+<!--      </aside> <div class="tab-content tab-content-four pt-2">-->
+<!--        {% comment %}Dashboard{% endcomment %} <ul class="tab-pane {% if request.resolver_match.url_name in 'dashboard bill_entry purchased_stock estimation_bill' %}active{% endif %}" id="home" aria-labelledby="home-tab">-->
+<!--          <li class="submenu">-->
+<!--            <a href="javascript:void(0);" class="active"><span>Shortcuts</span> <span class="menu-arrow"></span></a> <ul>-->
+<!--              <li>-->
+<!--                <a href="{% url 'billing:dashboard' %}">Dashboard</a>-->
+<!--              </li> <li>-->
+<!--                <a href="{% url 'billing:bill_entry' %}">New Bill</a>-->
+<!--              </li> <li>-->
+<!--                <a href="{% url 'billing:purchased_stock' %}">Stocks</a>-->
+<!--              </li> <li>-->
+<!--                <a href="{% url 'billing:estimation_bill' %}">Estimation Bills</a>-->
+<!--              </li>-->
+<!--            </ul>-->
+<!--          </li>-->
+<!--        </ul> {% comment %}Stocks{% endcomment %} <ul class="tab-pane {% if request.resolver_match.url_name in 'purchased_stock purchased_stock_entry purchased_stock_bill' %}active{% endif %}" id="product" aria-labelledby="messages-tab">-->
+<!--          <li>-->
+<!--            <a href="{% url 'billing:purchased_stock' %}">Stocks</a>-->
+<!--          </li> <li>-->
+<!--            <a href="{% url 'billing:purchased_stock_entry' %}">New Stock</a>-->
+<!--          </li> <li>-->
+<!--            <a href="{% url 'billing:purchased_stock_bill' %}">Stock Bills</a>-->
+<!--          </li>-->
+<!--        </ul> {% comment %}Reports{% endcomment %} <ul class="tab-pane {% if request.resolver_match.url_name in 'report_bill report_stock report_stock_bill sales_report purchase_report report_stock_manufacture stack_startment margin_report' %}active{% endif %}" id="reports" aria-labelledby="set-tab7">-->
+<!--          <li>-->
+<!--            <a href="{% url 'billing:report_bill' %}">Bill Report</a>-->
+<!--          </li> <li>-->
+<!--            <a href="{% url 'billing:report_stock' %}">Stocks Report</a>-->
+<!--          </li> <li>-->
+<!--            <a href="{% url 'billing:report_stock_bill' %}">Stock Bills Report</a>-->
+<!--          </li> <li>-->
+<!--            <a href="{% url 'billing:sales_report' %}">Sales Report</a>-->
+<!--          </li> <li>-->
+<!--            <a href="{% url 'billing:purchase_report' %}">Purchase Report</a>-->
+<!--          </li> <li>-->
+<!--            <a href="{% url 'billing:report_stock_manufacture' %}">Stock Manufacture Report</a>-->
+<!--          </li> <li>-->
+<!--            <a href="{% url 'billing:stack_startment' %}">Stock Statement Report</a>-->
+<!--          </li> <li>-->
+<!--            <a href="{% url 'billing:margin_report' %}">Margin Report</a>-->
+<!--          </li>-->
+<!--        </ul> {% comment %}Products{% endcomment %} <ul class="tab-pane {% if request.resolver_match.url_name in 'product_entry product_list' %}active{% endif %}" id="sales" aria-labelledby="profile-tab">-->
+<!--          <li>-->
+<!--            <a href="{% url 'billing:product_entry' %}">New Product</a>-->
+<!--          </li> <li>-->
+<!--            <a href="{% url 'billing:product_list' %}">Products</a>-->
+<!--          </li>-->
+<!--        </ul> {% comment %}Bill{% endcomment %} <ul class="tab-pane {% if request.resolver_match.url_name in 'bill_entry bill estimation_bill' %}active{% endif %}" id="purchase" aria-labelledby="report-tab">-->
+<!--          <li>-->
+<!--            <a href="{% url 'billing:bill_entry' %}">New Bill</a>-->
+<!--          </li> <li>-->
+<!--            <a href="{% url 'billing:bill' %}">Bill History</a>-->
+<!--          </li> <li>-->
+<!--            <a href="{% url 'billing:estimation_bill' %}">Estimation Bills</a>-->
+<!--          </li>-->
+<!--        </ul> {% comment %}Customers{% endcomment %} <ul class="tab-pane {% if request.resolver_match.url_name in 'customer_list customer_entry' %}active{% endif %}" id="user" aria-labelledby="set-tab">-->
+<!--          <li>-->
+<!--            <a href="{% url 'billing:customer_list' %}">Customers</a>-->
+<!--          </li> <li>-->
+<!--            <a href="{% url 'billing:customer_entry' %}">New Customer</a>-->
+<!--          </li>-->
+<!--        </ul> {% comment %}Suppliers{% endcomment %} <ul class="tab-pane {% if request.resolver_match.url_name in 'supplier_list supplier_entry' %}active{% endif %}" id="employee" aria-labelledby="set-tab2">-->
+<!--          <li>-->
+<!--            <a href="{% url 'billing:supplier_list' %}">Suppliers</a>-->
+<!--          </li> <li>-->
+<!--            <a href="{% url 'billing:supplier_entry' %}">New Supplier</a>-->
+<!--          </li>-->
+<!--        </ul> {% comment %}Permissions / Logout{% endcomment %} <ul class="tab-pane {% if request.resolver_match.url_name == 'shipping_view' %}active{% endif %}" id="permission" aria-labelledby="set-tab5">-->
+<!--          <li>-->
+<!--            <a href="{% url 'billing:shipping_view' %}">Shipping Addresses</a>-->
+<!--          </li> <li>-->
+<!--            <form action="{% url 'billing:logout' %}" method="post">-->
+<!--              {% csrf_token %} <a class="dropdown-item logout pb-0" href="">-->
+<!--                <img src="{% static 'asset/icons/log-out.svg' %}" class="me-2" alt="img" />-->
+<!--                <button style="border: none; outline: none; background: transparent; color: red;">Logout</button>-->
+<!--                </a>-->
+<!--            </form>-->
+<!--          </li>-->
+<!--        </ul>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+{% load static %}
+{% with url_name=request.resolver_match.url_name %}
+<div class="sidebar collapsed-sidebar" id="collapsed-sidebar">
+  <div class="sidebar-inner slimscroll">
+    <div id="sidebar-menu-2" class="sidebar-menu sidebar-menu-three">
+      <aside id="aside" class="ui-aside">
+        <nav>
+          <ul class="tab nav nav-tabs" id="myTab" role="tablist">
+            <!-- Dashboard Tab -->
+            <li class="nav-item" role="presentation">
+              <a
+                class="tablinks nav-link {% if url_name == 'dashboard' or url_name == 'bill_entry' or url_name == 'purchased_stock' or url_name == 'estimation_bill' %}active{% endif %}"
+                href="#home"
+                id="home-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#home"
+                role="tab"
+              >
+                <img src="{% static 'asset/icons/menu-icon.svg' %}" alt="" />
+              </a>
+            </li>
+
+            <!-- Reports Tab -->
+            <li class="nav-item" role="presentation">
+              <a
+                class="tablinks nav-link {% if url_name == 'report_bill' or url_name == 'report_stock' or url_name == 'report_stock_bill' or url_name == 'sales_report' or url_name == 'purchase_report' or url_name == 'report_stock_manufacture' or url_name == 'stack_startment' or url_name == 'margin_report' %}active{% endif %}"
+                href="#reports"
+                id="reports-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#reports"
+                role="tab"
+              >
+                <i data-feather="file-text"></i>
+              </a>
+            </li>
+
+            <!-- Purchased Stock Tab -->
+            <li class="nav-item" role="presentation">
+              <a
+                class="tablinks nav-link {% if url_name == 'purchased_stock' or url_name == 'purchased_stock_entry' or url_name == 'purchased_stock_bill' %}active{% endif %}"
+                href="#product"
+                id="product-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#product"
+                role="tab"
+              >
+                <img src="{% static 'asset/icons/product.svg' %}" alt="" />
+              </a>
+            </li>
+
+            <!-- Products Tab -->
+            <li class="nav-item" role="presentation">
+              <a
+                class="tablinks nav-link {% if url_name == 'product_entry' or url_name == 'product_list' %}active{% endif %}"
+                href="#sales"
+                id="sales-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#sales"
+                role="tab"
+              >
+                <img src="{% static 'asset/icons/sales1.svg' %}" alt="" />
+              </a>
+            </li>
+
+            <!-- Bills Tab -->
+            <li class="nav-item" role="presentation">
+              <a
+                class="tablinks nav-link {% if url_name == 'bill_entry' or url_name == 'bill' or url_name == 'estimation_bill' %}active{% endif %}"
+                href="#purchase"
+                id="purchase-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#purchase"
+                role="tab"
+              >
+                <img src="{% static 'asset/icons/purchase1.svg' %}" alt="" />
+              </a>
+            </li>
+
+            <!-- Customers Tab -->
+            <li class="nav-item" role="presentation">
+              <a
+                class="tablinks nav-link {% if url_name == 'customer_list' or url_name == 'customer_entry' %}active{% endif %}"
+                href="#user"
+                id="user-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#user"
+                role="tab"
+              >
+                <img src="{% static 'asset/icons/users1.svg' %}" alt="" />
+              </a>
+            </li>
+
+            <!-- Suppliers Tab -->
+            <li class="nav-item" role="presentation">
+              <a
+                class="tablinks nav-link {% if url_name == 'supplier_list' or url_name == 'supplier_entry' %}active{% endif %}"
+                href="#employee"
+                id="employee-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#employee"
+                role="tab"
+              >
+                <img src="{% static 'asset/icons/calendars.svg' %}" alt="" />
+              </a>
+            </li>
+
+            <!-- Permissions / Logout Tab -->
+            <li class="nav-item" role="presentation">
+              <a
+                class="tablinks nav-link {% if url_name == 'shipping_view' %}active{% endif %}"
+                href="#permission"
+                id="permission-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#permission"
+                role="tab"
+              >
+                <i data-feather="user"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <div class="tab-content tab-content-four pt-2">
+        <!-- Dashboard Pane -->
+        <ul
+          class="tab-pane {% if url_name == 'dashboard' or url_name == 'bill_entry' or url_name == 'purchased_stock' or url_name == 'estimation_bill' %}active{% endif %}"
+          id="home"
+          aria-labelledby="home-tab"
+        >
+          <li class="submenu">
+            <a href="javascript:void(0);" class="active">
+              <span>Shortcuts</span> <span class="menu-arrow"></span>
+            </a>
+            <ul>
+              <li><a href="{% url 'billing:dashboard' %}">Dashboard</a></li>
+              <li><a href="{% url 'billing:bill_entry' %}">New Bill</a></li>
+              <li><a href="{% url 'billing:purchased_stock' %}">Stocks</a></li>
+<!--              <li><a href="{% url 'billing:estimation_bill' %}">Estimation Bills</a></li>-->
+            </ul>
+          </li>
+        </ul>
+
+        <!-- Purchased Stock Pane -->
+        <ul
+          class="tab-pane {% if url_name == 'purchased_stock' or url_name == 'purchased_stock_entry' or url_name == 'purchased_stock_bill' %}active{% endif %}"
+          id="product"
+          aria-labelledby="product-tab"
+        >
+          <li><a href="{% url 'billing:purchased_stock' %}">Stocks</a></li>
+          <li><a href="{% url 'billing:purchased_stock_entry' %}">New Stock</a></li>
+          <li><a href="{% url 'billing:purchased_stock_bill' %}">Stock Bills</a></li>
+        </ul>
+
+        <!-- Reports Pane -->
+        <ul
+          class="tab-pane {% if url_name == 'report_bill' or url_name == 'report_stock' or url_name == 'report_stock_bill' or url_name == 'sales_report' or url_name == 'purchase_report' or url_name == 'report_stock_manufacture' or url_name == 'stack_startment' or url_name == 'margin_report' %}active{% endif %}"
+          id="reports"
+          aria-labelledby="reports-tab"
+        >
+          <li><a href="{% url 'billing:report_bill' %}">Bill Report</a></li>
+          <li><a href="{% url 'billing:report_stock' %}">Stocks Report</a></li>
+          <li><a href="{% url 'billing:report_stock_bill' %}">Stock Bills Report</a></li>
+          <li><a href="{% url 'billing:sales_report' %}">Sales Report</a></li>
+          <li><a href="{% url 'billing:purchase_report' %}">Purchase Report</a></li>
+          <li><a href="{% url 'billing:report_stock_manufacture' %}">Stock Manufacture Report</a></li>
+          <li><a href="{% url 'billing:stack_startment' %}">Stock Statement Report</a></li>
+          <li><a href="{% url 'billing:margin_report' %}">Margin Report</a></li>
+        </ul>
+
+        <!-- Products Pane -->
+        <ul
+          class="tab-pane {% if url_name == 'product_entry' or url_name == 'product_list' %}active{% endif %}"
+          id="sales"
+          aria-labelledby="sales-tab"
+        >
+          <li><a href="{% url 'billing:product_entry' %}">New Product</a></li>
+          <li><a href="{% url 'billing:product_list' %}">Products</a></li>
+        </ul>
+
+        <!-- Bills Pane -->
+        <ul
+          class="tab-pane {% if url_name == 'bill_entry' or url_name == 'bill' or url_name == 'estimation_bill' %}active{% endif %}"
+          id="purchase"
+          aria-labelledby="purchase-tab"
+        >
+          <li><a href="{% url 'billing:bill_entry' %}">New Bill</a></li>
+          <li><a href="{% url 'billing:bill' %}">Bill History</a></li>
+<!--          <li><a href="{% url 'billing:estimation_bill' %}">Estimation Bills</a></li>-->
+        </ul>
+
+        <!-- Customers Pane -->
+        <ul
+          class="tab-pane {% if url_name == 'customer_list' or url_name == 'customer_entry' %}active{% endif %}"
+          id="user"
+          aria-labelledby="user-tab"
+        >
+          <li><a href="{% url 'billing:customer_list' %}">Customers</a></li>
+          <li><a href="{% url 'billing:customer_entry' %}">New Customer</a></li>
+        </ul>
+
+        <!-- Suppliers Pane -->
+        <ul
+          class="tab-pane {% if url_name == 'supplier_list' or url_name == 'supplier_entry' %}active{% endif %}"
+          id="employee"
+          aria-labelledby="employee-tab"
+        >
+          <li><a href="{% url 'billing:supplier_list' %}">Suppliers</a></li>
+          <li><a href="{% url 'billing:supplier_entry' %}">New Supplier</a></li>
+        </ul>
+
+        <!-- Shipping & Logout Pane -->
+        <ul
+          class="tab-pane {% if url_name == 'shipping_view' %}active{% endif %}"
+          id="permission"
+          aria-labelledby="permission-tab"
+        >
+          <li><a href="{% url 'billing:shipping_view' %}">Shipping Addresses</a></li>
+          <li>
+            <form action="{% url 'billing:logout' %}" method="post">
+              {% csrf_token %}
+              <button class="dropdown-item logout pb-0" style="border: none; background: transparent; color: red;">
+                <img src="{% static 'asset/icons/log-out.svg' %}" class="me-2" alt="Logout Icon" />
+                Logout
+              </button>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% endwith %}

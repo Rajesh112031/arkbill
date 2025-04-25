@@ -1,0 +1,309 @@
+{% extends 'base/base.html' %} {% load static %} {% block body %}
+  <div class="content">
+    <div class="page-header">
+      <div class="add-item d-flex">
+        <div class="page-title">
+          <h4>Purchased Bill</h4>
+          <h6>Detailed Stock Bill</h6>
+        </div>
+        {% include 'base/error.html' %}
+      </div>
+      <ul class="table-top-head">
+        <li>
+          <a data-bs-toggle="tooltip" data-bs-placement="top" title="Collapse" id="collapse-header"><i data-feather="chevron-up" class="feather-chevron-up"></i></a>
+        </li>
+      </ul>
+    </div>
+    <!-- /add -->
+    <form action="" method="post" class="scroll-space">
+      {% csrf_token %}
+      <div class="card">
+        <div class="card-body add-product pb-0">
+          <div class="accordion-card-one accordion" id="accordionExample">
+            <div class="accordion-item">
+              <div class="accordion-header" id="headingOne">
+                <div class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-controls="collapseOne">
+                  <div class="addproduct-icon">
+                    <h5><i data-feather="info" class="add-info"></i><span>Invoice Info</span></h5>
+                    <a href="javascript:void(0);"><i data-feather="chevron-down" class="chevron-down-add"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <div class="row">
+                    <div class="col-lg-4 col-sm-6 col-12">
+                      <div class="mb-3 add-product">
+                        <div class="input-blocks">
+                          <label class="form-label">Invoice No</label>
+                          <div class="input-groupicon select-code">
+                            <input type="text" class="form-control p-3" value="{{ detail.invoice_no }}" readonly />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 col-12">
+                      <div class="mb-3 add-product">
+                        <div class="input-blocks">
+                          <label>Invoice Date</label>
+                          <div class="input-groupicon calender-input">
+                            <input type="text" class="form-control p-3" value="{{ detail.invoice_date }}" readonly />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-4 col-sm-6 col-12">
+                      <div class="mb-3 add-product">
+                        <label class="form-label">Reference Number 1</label>
+                        <input type="text" class="form-control p-3" value="{{ detail.reference_no_1 }}" readonly />
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 col-12">
+                      <div class="mb-3 add-product">
+                        <label class="form-label">Reference Number 2</label>
+                        <input type="text" class="form-control p-3" value="{{ detail.reference_no_2 }}" readonly />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="addservice-info">
+                    <div class="row">
+                      <div class="col-lg-4 col-sm-6 col-12">
+                        <div class="input-blocks">
+                          <label class="form-label">Purchase Type</label>
+                          <input type="text" class="form-control p-3" value="{{ detail.purchase_type }}" readonly />
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-sm-6 col-12">
+                        <div class="input-blocks">
+                          <label class="form-label">Tax Type Inclusive</label>
+                          <input type="text" class="form-control p-3" value="{{ detail.tax_type }}" readonly />
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-sm-3 col-12">
+                        <div class="input-blocks">
+                          <label>Remarks</label>
+                          <div class="input-groupicon select-code">
+                            <textarea name="" id="" rows="3" class="form-control p-3" readonly>{{ detail.remarks }}</textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-card-one accordion" id="accordionExample2">
+            <div class="accordion-item">
+              <div class="accordion-header" id="headingTwo">
+                <div class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-controls="collapseTwo">
+                  <div class="text-editor add-list">
+                    <div class="addproduct-icon list icon">
+                      <h5><i data-feather="life-buoy" class="add-info"></i><span>Supplier Info</span></h5>
+                      <a href="javascript:void(0);"><i data-feather="chevron-down" class="chevron-down-add"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample2">
+                <div class="accordion-body">
+                  <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                      <div class="row">
+                        <div class="col-lg-4 col-sm-6 col-12">
+                          <div class="input-blocks add-product">
+                            <label>Customer ID</label>
+                            <input type="text" class="form-control" name="" value="{{ detail.customer.customer_id }}" readonly />
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 col-12">
+                          <div class="input-blocks add-product">
+                            <label>Customer Name</label>
+                            <input type="text" class="form-control" name="" value="{{ detail.customer.customer_name }}" readonly />
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 col-12">
+                          <div class="input-blocks add-product">
+                            <label>Contact No</label>
+                            <input type="text" class="form-control" name="" value="{{ detail.customer.customer_phone }}" readonly />
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 col-12">
+                          <div class="input-blocks add-product">
+                            <label>Customer State</label>
+                            <input type="text" class="form-control" value="{{ detail.customer.customer_state }}" readonly />
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 col-12">
+                          <div class="input-blocks add-product">
+                            {% comment %} <label>Account Balance</label> {% endcomment %}
+                            <input type="text" class="form-control" id="customer_account_balance" readonly hidden />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-card-one accordion" id="accordionExample4">
+            <div class="accordion-item">
+              <div class="accordion-header" id="headingFour">
+                <div class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-controls="collapseFour">
+                  <div class="text-editor add-list">
+                    <div class="addproduct-icon list">
+                      <h5><i data-feather="list" class="add-info"></i><span>Product Info</span></h5>
+                      <a href="javascript:void(0);"><i data-feather="chevron-down" class="chevron-down-add"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="collapseFour" class="accordion-collapse collapse show" aria-labelledby="headingFour" data-bs-parent="#accordionExample4">
+                <div class="accordion-body">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="card mt-4">
+                        <div class="card-body">
+                          <div class="table-responsive">
+                            <table class="table">
+                              <thead class="table-light">
+                                <tr>
+                                  <th>#</th>
+                                  <th>Product</th>
+                                  <th>HSN</th>
+                                  <th>Pack Size</th>
+                                  <th>MRP</th>
+                                  <th>Sales Price</th>
+                                  <th>Units</th>
+                                  <th>Discount Units</th>
+                                  <th>Batch No</th>
+                                  <th>Discount 1</th>
+                                  <th>Discount 2</th>
+                                  <th>SGST</th>
+                                  <th>CGST</th>
+                                  <th>IGST</th>
+                                  <th>MFG Date</th>
+                                  <th>EXP Date</th>
+                                  <th>Total Quantity</th>
+                                  <th>Total Price</th>
+                                  <th>Total Tax</th>
+                                  <th>Grand Total</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {% for product in products %}
+                                  <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ product.product.product_name }}</td>
+                                    <td>{{ product.hsn }}</td>
+                                    <td>{{ product.pack_size }}</td>
+                                    <td>{{ product.mrp }}</td>
+                                    <td>{{ product.sales_price }}</td>
+                                    <td>{{ product.units }}</td>
+                                    <td>{{ product.discount_unit }}</td>
+                                    <td>{{ product.batch_no }}</td>
+                                    <td>{{ product.discount_percentage_1 }}% (₹{{ product.discount_amount_1 }})</td>
+                                    <td>{{ product.discount_percentage_2 }}% (₹{{ product.discount_amount_2 }})</td>
+                                    <td>{{ product.sgst_percentage }}% (₹{{ product.sgst_amount }})</td>
+                                    <td>{{ product.cgst_percentage }}% (₹{{ product.cgst_amount }})</td>
+                                    <td>{{ product.igst_percentage }}% (₹{{ product.igst_amount }})</td>
+                                    <td>{{ product.manufacturing }}</td>
+                                    <td>{{ product.expiring }}</td>
+                                    <td>{{ product.total_quantity }}</td>
+                                    <td>₹{{ product.total_price }}</td>
+                                    <td>₹{{ product.totalTax }}</td>
+                                    <td>₹{{ product.grandTotal }}</td>
+                                  </tr>
+                                {% endfor %}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-card-one accordion" id="accordionExample5">
+            <div class="accordion-item">
+              <div class="accordion-header" id="headingTwo">
+                <div class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseBill" aria-controls="collapseBill">
+                  <div class="text-editor add-list">
+                    <div class="addproduct-icon list icon">
+                      <h5><i data-feather="life-buoy" class="add-info"></i><span>Bill Info</span></h5>
+                      <a href="javascript:void(0);"><i data-feather="chevron-down" class="chevron-down-add"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="collapseBill" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample5">
+                <div class="accordion-body">
+                  <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                      <div class="row">
+                        <div class="col-lg-4 col-sm-6 col-12">
+                          <div class="input-blocks add-product">
+                            <label>Bill Discount Percentage</label>
+                            <input type="text" class="form-control" value="{{ detail.bill_discount_percentage }}" readonly />
+                          </div>
+                        </div>
+
+                        <div class="col-lg-4 col-sm-6 col-12">
+                          <div class="input-blocks add-product">
+                            <label>Bill Discount Amount</label>
+                            <input type="text" class="form-control" value="{{ detail.bill_discount_amount }}" readonly />
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 col-12">
+                          <div class="input-blocks add-product">
+                            <label>Total Discount Amount</label>
+                            <input type="text" class="form-control" value="{{ detail.total_discount_amount }}" readonly />
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 col-12">
+                          <div class="input-blocks add-product">
+                            <div class="input-blocks add-product">
+                              <label>Total Tax Amount</label>
+                              <input type="text" class="form-control" value="{{ detail.total_tax_amount }}" readonly />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 col-12">
+                          <div class="input-blocks add-product">
+                            <label>Total Units</label>
+                            <input type="text" class="form-control" value="{{ detail.total_units }}" readonly />
+                          </div>
+                        </div>
+
+                        <div class="col-lg-4 col-sm-6 col-12">
+                          <div class="input-blocks add-product">
+                            <label>Total Amount</label>
+                            <input type="text" class="form-control" value="{{ detail.total_amount }}" readonly />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="btn-addproduct mb-4">
+          <a href="{% url 'billing:pdf' detail.id %}">
+            <button type="button" class="btn btn-submit px-5">Print</button>
+          </a>
+        </div>
+      </div>
+    </form>
+  </div>
+{% endblock %}

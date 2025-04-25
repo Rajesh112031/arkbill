@@ -1,0 +1,64 @@
+
+{% extends 'base/base.html' %}
+{% load humanize %}
+{% block body %}
+<div class="content">
+  <div class="page-header">
+    <h4>Stock Report</h4>
+  </div>
+
+  <form method="get" class="mb-3 row">
+    <div class="col-md-3">
+      <label>Product Name</label>
+      <input type="text" class="form-control" name="product_name" placeholder="Search by product name" value="{{ product_name }}">
+    </div>
+
+    <div class="col-md-3">
+        <label>Start Date</label>
+        <input type="date" class="form-control" name="start_date" value="{{ start_date }}">
+      </div>
+      <div class="col-md-3">
+        <label>End Date</label>
+        <input type="date" class="form-control" name="end_date" value="{{ end_date }}">
+      </div>
+    
+    <div class="col-md-3 align-self-end">
+      <button type="submit" class="btn btn-info">Filter</button>
+    </div>
+  </form>
+
+  <div class="card">
+    <div class="card-header">Product Margins</div>
+    <div class="card-body p-0">
+      {% if pro %}
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Product Code</th>
+                    <th>Stock In</th>
+                    <th>Stock Out</th>
+                    <th>Current Stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in pro %}
+                    <tr>
+
+                        <td>{{ product.product_name }}</td>
+                        <td>{{ product.product_code }}</td>
+                        <td>{{ product.stock_in }}</td>
+                        <td>{{ product.stock_out }}</td>
+                        <td>{{ product.get_current_stock }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+      {% else %}
+        <p class="p-3">No purchase items found for selected filters.</p>
+      {% endif %}
+    </div>
+    {% include "base/pagination.html" %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,5 @@
+"name","type","length","leftDigits","rightDigits"
+"ID","INTEGER","4","4","0"
+"UserID","STRING","100","0","0"
+"Operation","STRING","121","0","0"
+"Date","STRING","19","0","0"

@@ -1,0 +1,6 @@
+"name","type","length","leftDigits","rightDigits"
+"IP_ID","INTEGER","4","4","0"
+"InvoiceID","INTEGER","6","6","0"
+"PaymentDate","STRING","19","0","0"
+"TotalPaid","DECIMAL","9","6","2"
+"PaymentMode","STRING","150","0","0"

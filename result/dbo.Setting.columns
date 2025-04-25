@@ -1,0 +1,4 @@
+"name","type","length","leftDigits","rightDigits"
+"ID","INTEGER","1","1","0"
+"PurchaseTax","STRING","20","0","0"
+"SalesTax","STRING","20","0","0"

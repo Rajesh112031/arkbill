@@ -1,0 +1,339 @@
+{% extends "base/base.html" %} {% load static %} {% block body %}
+
+<div class="content">
+	<div class="page-header">
+		<div class="add-item d-flex">
+			<div class="page-title">
+				<h4>Stocks Entry</h4>
+				<h6>New Batch Stock Create</h6>
+			</div>
+		</div>
+	</div>
+	<div class="accordion-body">
+		<div class="card">
+			<div class="card-body">
+				<form action="">
+					<div class="row">
+						<div class="row">
+							<div class="col-lg-6 col-sm-3 col-12">
+								<div class="input-blocks">
+									<label>Product Name</label>
+									<div class="input-groupicon select-code">
+										<input
+											type="text"
+											placeholder="Please type product code and select"
+											class="p-3"
+										/>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3 col-12">
+								<div class="input-blocks">
+									<label class="form-label">Generate Batch</label>
+									<input type="text" class="input-form" />
+								</div>
+							</div>
+							<div class="col-sm-3 col-12">
+								<div class="input-blocks">
+									<label>Stocks Order</label>
+									<div class="input-groupicon select-code">
+										<input
+											type="text"
+											placeholder="Ordering Stocks Count"
+											class="p-3"
+										/>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-12 text-light">
+							<div class="input-blocks">
+								<label for=""></label>
+								<div class="row">
+									<div class="col">
+										<div class="row">
+											<div class="form-floating mb-3">
+												<input
+													type="number"
+													class="form-control ps-3"
+													id="mrp"
+													placeholder="Actual Prize"
+												/>
+												<label for="mrp" class="ms-2">MRP</label>
+											</div>
+										</div>
+										<div class="row">
+											<div class="form-floating mb-3">
+												<input
+													type="number"
+													class="form-control ps-3"
+													id="mrp"
+													placeholder="Sales Prize"
+												/>
+												<label for="mrp" class="ms-2">Sales Prize</label>
+											</div>
+										</div>
+									</div>
+									<div class="col">
+										<div class="row">
+											<div class="form-floating mb-3">
+												<input
+													type="number"
+													class="form-control ps-3"
+													id="mrp"
+													placeholder="Enter Quantity"
+												/>
+												<label for="mrp" class="ms-2">Quantity</label>
+											</div>
+										</div>
+										<div class="row">
+											<div class="form-floating mb-3">
+												<input
+													type="number"
+													class="form-control ps-3"
+													id="mrp"
+													placeholder="Discount Quantity"
+												/>
+												<label for="mrp" class="ms-2">Free Quantity</label>
+											</div>
+										</div>
+									</div>
+									<div class="col">
+										<div class="row">
+											<div class="form-floating mb-3">
+												<input
+													type="number"
+													class="form-control ps-3"
+													id="mrp"
+													placeholder="Discount Percentage"
+												/>
+												<label for="mrp" class="ms-2">Discount %</label>
+											</div>
+										</div>
+										<div class="row">
+											<div class="form-floating mb-3">
+												<input
+													type="number"
+													class="form-control ps-3"
+													id="mrp"
+													placeholder="Discount Amount"
+												/>
+												<label for="mrp" class="ms-2">Discount Amt.</label>
+											</div>
+										</div>
+									</div>
+									<div class="col">
+										<div class="row">
+											<div class="form-floating mb-3">
+												<input
+													type="number"
+													class="form-control ps-3"
+													id="mrp"
+													placeholder="Added Discount %"
+												/>
+												<label for="mrp" class="ms-2">Added Dis %</label>
+											</div>
+										</div>
+										<div class="row">
+											<div class="form-floating mb-3">
+												<input
+													type="number"
+													class="form-control ps-3"
+													id="mrp"
+													placeholder="Added Discount Amount"
+												/>
+												<label for="mrp" class="ms-2">Added Dis Amt.</label>
+											</div>
+										</div>
+									</div>
+									<div class="col">
+										<div class="row">
+											<div class="form-floating mb-3">
+												<input
+													type="number"
+													class="form-control ps-3"
+													id="mrp"
+													placeholder="SGST %"
+												/>
+												<label for="mrp" class="ms-2">SGST %</label>
+											</div>
+										</div>
+										<div class="row">
+											<div class="form-floating mb-3">
+												<input
+													type="number"
+													class="form-control ps-3"
+													id="mrp"
+													placeholder="SGST Amt."
+												/>
+												<label for="mrp" class="ms-2">SGST Amt.</label>
+											</div>
+										</div>
+									</div>
+									<div class="col">
+										<div class="row">
+											<div class="form-floating mb-3">
+												<input
+													type="number"
+													class="form-control ps-3"
+													id="mrp"
+													placeholder="CGST %"
+												/>
+												<label for="mrp" class="ms-2">CGST %</label>
+											</div>
+										</div>
+										<div class="row">
+											<div class="form-floating mb-3">
+												<input
+													type="number"
+													class="form-control ps-3"
+													id="mrp"
+													placeholder="CGST Amt."
+												/>
+												<label for="mrp" class="ms-2">CGST Amt.</label>
+											</div>
+										</div>
+									</div>
+									<div class="col">
+										<div class="row">
+											<div class="form-floating mb-3">
+												<input
+													type="number"
+													class="form-control ps-3"
+													id="mrp"
+													placeholder="IGST %"
+												/>
+												<label for="mrp" class="ms-2">IGST %</label>
+											</div>
+										</div>
+										<div class="row">
+											<div class="form-floating mb-3">
+												<input
+													type="number"
+													class="form-control ps-3"
+													id="mrp"
+													placeholder="IGST Amt."
+												/>
+												<label for="mrp" class="ms-2">IGST Amt.</label>
+											</div>
+										</div>
+									</div>
+									<div class="col">
+										<div class="row">
+											<div class="form-floating mb-3">
+												<input
+													type="number"
+													class="form-control ps-3"
+													id="mrp"
+													placeholder="Total"
+												/>
+												<label for="mrp" class="ms-2">Total Qty</label>
+											</div>
+										</div>
+										<div class="row">
+											<div class="form-floating mb-3">
+												<input
+													type="number"
+													class="form-control ps-3"
+													id="mrp"
+													placeholder="Total"
+												/>
+												<label for="mrp" class="ms-2">Total Prize</label>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-12 col-12">
+											<button type="button" class="btn btn-submit w-100">
+												Add Stock
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="table-responsive no-pagination">
+						<table class="table">
+							<thead>
+								<tr>
+									<th class="product_name">Product</th>
+									<th>Batch</th>
+									<th>Quantity</th>
+									<th>Discount %</th>
+									<th>Discount Amt.</th>
+									<th>SGST %</th>
+									<th>SGST Amt.</th>
+									<th>CGST %</th>
+									<th>CGST Amt.</th>
+									<th>Tax</th>
+									<th>Price</th>
+									<th>Discount</th>
+									<th>Total</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td rowspan="2">Yummy dog food 100kg pack</td>
+									<td rowspan="2">SC21</td>
+									<td rowspan="2">1000</td>
+									<td>%</td>
+									<td>Amt</td>
+									<td>%</td>
+									<td>Amt</td>
+									<td>%</td>
+									<td>Amt</td>
+									<td rowspan="2">Tax</td>
+									<td rowspan="2">Price</td>
+									<td rowspan="2">Discount</td>
+									<td rowspan="2">Total</td>
+								</tr>
+								<tr>
+									<td>%</td>
+									<td>Amt</td>
+									<td>%</td>
+									<td>Amt</td>
+									<td>%</td>
+									<td>Amt</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="row">
+						<div class="col-lg-6 ms-auto">
+							<div class="total-order w-100 max-widthauto m-auto mb-4">
+								<ul>
+									<li>
+										<h4>Tax</h4>
+										<h5>0.00</h5>
+									</li>
+									<li>
+										<h4>Price</h4>
+										<h5>0.00</h5>
+									</li>
+									<li>
+										<h4>Discount</h4>
+										<h5>0.00</h5>
+									</li>
+									<li>
+										<h4>Grand Total</h4>
+										<h5>0.00</h5>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-12">
+		<div class="btn-addproduct my-4 mb-5">
+			<button type="submit" class="btn btn-submit">Create Stocks</button>
+		</div>
+	</div>
+</div>
+{% endblock body %}

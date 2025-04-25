@@ -1,0 +1,96 @@
+{% extends 'base/base.html' %}
+{% block body %}
+<div class="content">
+  <div class="page-header">
+    <div class="d-flex justify-content-between align-items-center w-100">
+      <div>
+        <h4>Reports</h4>
+        <h6>Bills Report</h6>
+      </div>
+    </div>
+  </div>
+
+  <form method="get">
+    <div class="row">
+      <div class="col">
+        <label>Invoice No</label>
+        <input type="text" class="form-control mb-3" name="invoice_no" value="{{ invoice_no }}" />
+      </div>
+      <div class="col">
+        <label>Customer Name</label>
+        <input type="text" class="form-control mb-3" name="customer_name" value="{{ customer_name }}" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <label for="start_date">Start Date:</label>
+        <input type="date" class="form-control mb-3" name="start_date" value="{{ start_date }}" />
+      </div>
+      <div class="col">
+        <label for="end_date">End Date:</label>
+        <input type="date" class="form-control mb-3" name="end_date" value="{{ end_date }}" />
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-info">Filter</button>
+  </form>
+
+  <div class="card mt-4">
+    <div class="card-header">
+      <h5>Bill List</h5>
+    </div>
+    <div class="card-body">
+      {% if reports %}
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Invoice No</th>
+            <th>Invoice Date</th>
+            <th>Customer</th>
+            <th>Total Units</th>
+            <th>Total Amount</th>
+            <th>Tax Inclusive</th>
+            <th>Discount Amount</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for bill in reports %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ bill.invoice_no }} - {{ bill.bill_id }}</td>
+            <td>{{ bill.invoice_date }}</td>
+            <td>
+              {% if bill.customer %}
+                {{ bill.customer.customer_name }}
+              {% else %}
+                N/A
+              {% endif %}
+            </td>
+            <td>{{ bill.total_units }}</td>
+            <td>{{ bill.total_amount }}</td>
+            <td>{{ bill.tax_type|yesno:"YES,NO" }}</td>
+            <td>{{ bill.total_discount_amount|default:'0' }}</td>
+            <td>
+              <a href="{% url 'billing:bill_detail' bill.id %}" class="btn btn-info btn-sm">View</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+        <p>No bills available on filtered date.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="card mt-3">
+    <div class="card-body">
+      <h5 class="card-title text-primary">Total Grand Amount</h5>
+      <p class="card-text h4">₹ {{ total_amount|floatformat:2 }}</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

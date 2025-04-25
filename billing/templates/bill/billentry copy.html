@@ -1,0 +1,493 @@
+{% extends 'base/base.html' %} {% load static %} {% block body %}
+  <div class="content">
+    <div class="page-header">
+      <div class="add-item d-flex">
+        <div class="page-title">
+          <h4>Purchase Entry</h4>
+          <h6>New Stock Purchase List</h6>
+        </div>
+        {% include 'base/error.html' %}
+      </div>
+      <ul class="table-top-head">
+        <li>
+          <a data-bs-toggle="tooltip" data-bs-placement="top" title="Collapse" id="collapse-header"><i data-feather="chevron-up" class="feather-chevron-up"></i></a>
+        </li>
+      </ul>
+    </div>
+    <!-- /add -->
+    <form action="" method="post">
+      {% csrf_token %}
+      <div class="card">
+        <div class="card-body add-product pb-0">
+          <div class="accordion-card-one accordion" id="accordionExample">
+            <div class="accordion-item">
+              <div class="accordion-header" id="headingOne">
+                <div class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-controls="collapseOne">
+                  <div class="addproduct-icon">
+                    <h5><i data-feather="info" class="add-info"></i><span>Invoice Info</span></h5>
+                    <a href="javascript:void(0);"><i data-feather="chevron-down" class="chevron-down-add"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <div class="row">
+                    <div class="col-lg-4 col-sm-6 col-12">
+                      <div class="mb-3 add-product">
+                        <div class="input-blocks">
+                          <label class="form-label">Invoice No</label>
+                          <div class="input-groupicon select-code">{{ form.invoice_no }}</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 col-12">
+                      <div class="mb-3 add-product">
+                        <div class="input-blocks">
+                          <label>Invoice Date</label>
+                          <div class="input-groupicon calender-input">{{ form.invoice_date }}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-4 col-sm-6 col-12">
+                      <div class="mb-3 add-product">
+                        <label class="form-label">Reference Number 1</label>
+                        {{ form.reference_no_1 }}
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 col-12">
+                      <div class="mb-3 add-product">
+                        <label class="form-label">Reference Number 2</label>
+                        {{ form.reference_no_2 }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="addservice-info">
+                    <div class="row">
+                      <div class="col-lg-4 col-sm-6 col-12">
+                        <div class="input-blocks">
+                          <label class="form-label">Purchase Type</label>
+                          {{ form.purchase_type }}
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-sm-6 col-12">
+                        <div class="input-blocks">
+                          <label class="form-label">Tax Type Inclusive</label>
+                          {{ form.tax_type }}
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-sm-3 col-12">
+                        <div class="input-blocks">
+                          <label>Remarks</label>
+                          <div class="input-groupicon select-code">{{ form.remarks }}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-card-one accordion" id="accordionExample2">
+            <div class="accordion-item">
+              <div class="accordion-header" id="headingTwo">
+                <div class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-controls="collapseTwo">
+                  <div class="text-editor add-list">
+                    <div class="addproduct-icon list icon">
+                      <h5><i data-feather="life-buoy" class="add-info"></i><span>Customer Info</span></h5>
+                      <a href="javascript:void(0);"><i data-feather="chevron-down" class="chevron-down-add"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample2">
+                <div class="accordion-body">
+                  <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                      <div class="row">
+                        <div class="col-lg-4 col-sm-6 col-12">
+                          <div class="input-blocks add-product">
+                            <label>Customer Search</label>
+                            <input type="text" class="form-control" placeholder="Enter customer name or ID" id="customer_search" />
+                            <div id="customerSearchDropdownContainer" class="dropdown-container"></div>
+                            {% comment %} {{ form.supplier }} {% endcomment %}
+                          </div>
+                        </div>
+
+                        <div class="col-lg-4 col-sm-6 col-12">
+                          <div class="input-blocks add-product">
+                            <label>Customer ID</label>
+                            <input type="text" class="form-control" name="supplier_id" id="customer_id" readonly />
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 col-12">
+                          <div class="input-blocks add-product">
+                            <label>Customer Name</label>
+                            <input type="text" class="form-control" id="customer_name" readonly />
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 col-12">
+                          <div class="input-blocks add-product">
+                            <label>Contact No</label>
+                            <input type="text" class="form-control" id="customer_phone" readonly />
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 col-12">
+                          <div class="input-blocks add-product">
+                            <label>Customer State</label>
+                            <input type="text" class="form-control" id="customer_state" readonly />
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 col-12">
+                          <div class="input-blocks add-product">
+                            <label>Account Balance</label>
+                            <input type="text" class="form-control" id="customer_account_balance" readonly />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-card-one accordion" id="accordionExample4">
+            <div class="accordion-item">
+              <div class="accordion-header" id="headingFour">
+                <div class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-controls="collapseFour">
+                  <div class="text-editor add-list">
+                    <div class="addproduct-icon list">
+                      <h5><i data-feather="list" class="add-info"></i><span>Product Info</span></h5>
+                      <a href="javascript:void(0);"><i data-feather="chevron-down" class="chevron-down-add"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="collapseFour" class="accordion-collapse collapse show" aria-labelledby="headingFour" data-bs-parent="#accordionExample4">
+                <div class="accordion-body">
+                  <div class="card">
+                    <div class="card-body">
+                      <div>
+                        <div class="row">
+                          <div class="row">
+                            <div class="col-lg-6 col-sm-3 col-12">
+                              <div class="input-blocks">
+                                <label>Search Product Name or Code</label>
+                                <div class="input-groupicon select-code">
+                                  <input type="text" id="product_search" placeholder="Please type product code and select" class="form-control p-3" />
+
+                                  <div id="productSearchDropdownContainer" class="dropdown-container"></div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-sm-3 col-12">
+                              <div class="input-blocks">
+                                <label for="product_name" class="form-label">Product Name</label>
+                                <input type="text" id="product_name" class="form-control" required readonly/>
+                                <input type="hidden" id="product_id" required name="product_id"/>
+                              </div>
+                            </div>
+                            <div class="col-sm-3 col-12">
+                              <div class="input-blocks">
+                                <label for="product_code" class="form-label">Product Code</label>
+                                <input type="text" id="product_code" class="form-control" required readonly/>
+                              </div>
+                            </div>
+                            <div class="col-sm-3 col-12">
+                              <div class="input-blocks">
+                                <label for="hsn" class="form-label">HSN</label>
+                                <input type="text" id="hsn" class="form-control" required readonly/>
+                              </div>
+                            </div>
+                            <div class="col-sm-3 col-12">
+                              <div class="input-blocks">
+                                <label for="product_packtype" class="form-label">Pack Type</label>
+                                <input type="text" id="product_packtype" class="form-control" required readonly/>
+                              </div>
+                            </div>
+                            <div class="col-sm-3 col-12">
+                              <div class="input-blocks">
+                                <label for="batch">Batch</label>
+                                <input type="text" id="batch" placeholder="Stock Batch" class="form-control" required />
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-12 text-light">
+                            <div class="input-blocks">
+                              <label for=""></label>
+                              <div class="row">
+                                <div class="col">
+                                  <div class="row">
+                                    <div class="form-floating mb-3">
+                                      <input type="number" id="mrp" placeholder="Actual Price" class="form-control ps-3" oninput="calculateTotalPrize()" required />
+                                      <label for="mrp" class="ms-2">MRP</label>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="form-floating mb-3">
+                                      <input type="number" class="form-control ps-3" id="sales_price" placeholder="Sales Prize" oninput="calculateTotalPrize()" required />
+                                      <label for="sales_price" class="ms-2">Sales Prize</label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col">
+                                  <div class="row">
+                                    <div class="form-floating mb-3">
+                                      <input type="number" class="form-control ps-3" id="quantity" placeholder="Enter Quantity" oninput="calculateTotalPrize()" required />
+                                      <label for="quantity" class="ms-2">Quantity</label>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="form-floating mb-3">
+                                      <input type="number" class="form-control ps-3" id="free_quantity" placeholder="Discount Quantity" oninput="calculateTotalPrize()" />
+                                      <label for="free_quantity" class="ms-2">Free Quantity</label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col">
+                                  <div class="row">
+                                    <div class="form-floating mb-3">
+                                      <input type="number" class="form-control ps-3" id="discount_percentage" placeholder="Discount %" oninput="calculateTotalPrize()" />
+                                      <label for="discount_percentage" class="ms-2">Discount %</label>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="form-floating mb-3">
+                                      <input type="number" class="form-control ps-3" id="discount_amount" placeholder="Discount Amount" disabled />
+                                      <label for="discount_amount" class="ms-2">Discount Amt.</label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col">
+                                  <div class="row">
+                                    <div class="form-floating mb-3">
+                                      <input type="number" class="form-control ps-3" id="added_discount" placeholder="Added Discount %" oninput="calculateTotalPrize()" />
+                                      <label for="added_discount" class="ms-2">Added Dis %</label>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="form-floating mb-3">
+                                      <input type="number" class="form-control ps-3" id="added_discount_amount" placeholder="Added Discount Amount" disabled />
+                                      <label for="added_discount_amount" class="ms-2">Added Dis Amt.</label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col">
+                                  <div class="row">
+                                    <div class="form-floating mb-3">
+                                      <input type="number" class="form-control ps-3" id="sgst" placeholder="SGST %" oninput="calculateTotalPrize()" />
+                                      <label for="sgst" class="ms-2">SGST %</label>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="form-floating mb-3">
+                                      <input type="number" class="form-control ps-3" id="sgst_amount" placeholder="SGST Amt." disabled />
+                                      <label for="sgst_amount" class="ms-2">SGST Amt.</label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col">
+                                  <div class="row">
+                                    <div class="form-floating mb-3">
+                                      <input type="number" class="form-control ps-3" id="cgst" placeholder="CGST %" oninput="calculateTotalPrize()" />
+                                      <label for="cgst" class="ms-2">CGST %</label>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="form-floating mb-3">
+                                      <input type="number" class="form-control ps-3" id="cgst_amount" placeholder="CGST Amt." disabled />
+                                      <label for="cgst_amount" class="ms-2">CGST Amt.</label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col">
+                                  <div class="row">
+                                    <div class="form-floating mb-3">
+                                      <input type="number" class="form-control ps-3" id="igst" placeholder="IGST %" oninput="calculateTotalPrize()" />
+                                      <label for="igst" class="ms-2">IGST %</label>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="form-floating mb-3">
+                                      <input type="number" class="form-control ps-3" id="igst_amount" placeholder="IGST Amt." disabled />
+                                      <label for="igst_amount" class="ms-2">IGST Amt.</label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col">
+                                  <div class="row">
+                                    <div class="form-floating mb-3">
+                                      <input type="number" class="form-control ps-3" id="total_quantity" placeholder="Total" disabled />
+                                      <label for="total_quantity" class="ms-2">Total Qty</label>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="form-floating mb-3">
+                                      <input type="number" class="form-control ps-3" id="total_price" placeholder="Total" disabled />
+                                      <label for="total_price" class="ms-2">Total Prize</label>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="row">
+                                  <div class="col-md-3 col-sm-6">
+                                    <label for="totalTax">Total Tax</label>
+                                    <input type="number" id="totalTax" placeholder="Tax" class="form-control" disabled />
+                                  </div>
+                                  <div class="col-md-3 col-sm-6">
+                                    <label for="grandTotal">Grand Total</label>
+                                    <input type="number" id="grandTotal" placeholder="Grand Total" class="form-control" disabled />
+                                  </div>
+                                  <div class="col-md-3 col-sm-6">
+                                    <label for="barcode">Barcode</label>
+                                    <input type="text" id="product_barcode" placeholder="Enter Barcode" class="form-control" name="barcode" readonly/>
+                                  </div>
+                                  <div class="col-md-3 col-sm-6">
+                                    <div class="input-blocks">
+                                      <label for="stock_available">Stocks Available</label>
+                                      <input type="text" id="stock_available" placeholder="Available Stocks" class="form-control" name="stock_available" required />
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div class="row mb-4">
+                                  <div class="col-sm-3">
+                                    <label for="manufacture">Manufacturing Date</label>
+                                    <input type="date" id="manufacture" class="form-control" required />
+                                  </div>
+                                  <div class="col-sm-3">
+                                    <label for="expiring">Expiring Date</label>
+                                    <input type="date" id="expiring" class="form-control" required />
+                                  </div>
+                                  <div class="col-sm-3">
+                                    <label for="pack_size">Pack Size</label>
+                                    <input type="number" id="pack_size" class="form-control" required readonly/>
+                                  </div>
+                                  <div class="col-sm-3">
+                                    <label for="">‎</label>
+                                    <button type="button" class="btn btn-submit w-100" onclick="addStock()">Add Stock</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div id="table_purchase" class="table-responsive no-pagination"></div>
+
+                        <div class="row">
+                          <div class="col-lg-6 ms-auto mt-3">
+                            <div class="total-order w-100 max-widthauto m-auto mb-4">
+                              <ul>
+                                <li>
+                                  <h4>Tax</h4>
+                                  <h5 id="overAllTotalTax">0</h5>
+                                </li>
+                                <li>
+                                  <h4>Price</h4>
+                                  <h5 id="overAllTotalPrice">0</h5>
+                                </li>
+                                <li>
+                                  <h4>Discount</h4>
+                                  <h5 id="overAllTotalDiscount">0</h5>
+                                </li>
+                                <li>
+                                  <h4>Grand Total</h4>
+                                  <h5 id="overAllTotal">0</h5>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-card-one accordion" id="accordionExample5">
+            <div class="accordion-item">
+              <div class="accordion-header" id="headingTwo">
+                <div class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-controls="collapseTwo">
+                  <div class="text-editor add-list">
+                    <div class="addproduct-icon list icon">
+                      <h5><i data-feather="life-buoy" class="add-info"></i><span>Bill Info</span></h5>
+                      <a href="javascript:void(0);"><i data-feather="chevron-down" class="chevron-down-add"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample5">
+                <div class="accordion-body">
+                  <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                      <div class="row">
+                        <div class="col-lg-4 col-sm-6 col-12">
+                          <div class="input-blocks add-product">
+                            <label>{{ form.bill_discount_percentage.label }}</label>
+                            {{ form.bill_discount_percentage }}
+                          </div>
+                        </div>
+
+                        <div class="col-lg-4 col-sm-6 col-12">
+                          <div class="input-blocks add-product">
+                            <label>{{ form.bill_discount_amount.label }}</label>
+                            {{ form.bill_discount_amount }}
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 col-12">
+                          <div class="input-blocks add-product">
+                            <label>{{ form.total_discount_amount.label }}</label>
+                            {{ form.total_discount_amount }}
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 col-12">
+                          <div class="input-blocks add-product">
+                            <div class="input-blocks add-product">
+                              <label>{{ form.total_tax_amount.label }}</label>
+                              {{ form.total_tax_amount }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 col-12">
+                          <div class="input-blocks add-product">
+                            <label>{{ form.total_units.label }}</label>
+                            {{ form.total_units }}
+                          </div>
+                        </div>
+
+                        <div class="col-lg-4 col-sm-6 col-12">
+                          <div class="input-blocks add-product">
+                            <label>{{ form.total_amount.label }}</label>
+                            {{ form.total_amount }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="btn-addproduct mb-4">
+          <button type="submit" class="btn btn-submit">Add Products To Stocks</button>
+        </div>
+      </div>
+    </form>
+    <!-- /add -->
+  </div>
+
+  <script src="{% static 'js/customer_search.js' %}"></script>
+  <script src="{% static 'js/AvailableProductSearchView.js' %}"></script>
+  <script src="{% static 'js/billtablePurchased.js' %}"></script>
+  <script src="{% static 'js/fieldvalidation.js' %}"></script>
+{% endblock %}

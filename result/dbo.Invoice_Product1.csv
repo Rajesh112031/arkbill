@@ -1,0 +1,2 @@
+"IPo_ID","InvoiceID","ProductID","BatchNo","SalesRate","Qty","DiscountPer","Discount","CGSTPer","CGSTAmt","SGSTPer","SGSTAmt","IGSTPer","IGSTAmt","TotalAmount","PurchaseRate","Margin","MfgDate","ExpiryDate","MRP","Barcode","FreeQty"
+"2","1","206","4-2                           ","372.88","1.00","0.0000","0.00","9.00","33.56","9.00","33.56","0.00","0.00","440.00","254.49","118.39","2024-04-17 00:00:00","2024-04-17 00:00:00","440.00","10206","0.00"

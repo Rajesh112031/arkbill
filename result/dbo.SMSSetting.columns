@@ -1,0 +1,5 @@
+"name","type","length","leftDigits","rightDigits"
+"Id","STRING","0","0","0"
+"APIUrl","STRING","0","0","0"
+"IsDefault","STRING","0","0","0"
+"IsEnabled","STRING","0","0","0"

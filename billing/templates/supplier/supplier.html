@@ -1,0 +1,276 @@
+{% extends 'base/base.html' %} {% load static %} {% block body %}
+  <div class="content">
+    <div class="page-header">
+      <div class="add-item d-flex">
+        <div class="page-title">
+          <h4>Supplier List</h4>
+          <h6>Manage your Suppliers</h6>
+        </div>
+      </div>
+
+      <div class="page-btn">
+        <a href="{% url 'billing:supplier_entry' %}" class="btn btn-added"><i data-feather="plus-circle" class="me-2"></i>Add New Supplier</a>
+      </div>
+    </div>
+    <!-- /product list -->
+    <div class="card table-list-card">
+      <div class="card-body">
+        <div class="table-top">
+          {% comment %}
+          <div class="search-set">
+            <div class="search-input">
+              <label><input type="text" class="form-control" placeholder="Search Suppliers..." id="search-input" onkeyup="filterTable()" /></label>
+            </div>
+          </div>
+          <div class="form-sort">
+            <select class="form-select" id="sort-select" onchange="sortTable()">
+              <option value="name-asc">Sort by Name (A-Z)</option>
+              <option value="name-desc">Sort by Name (Z-A)</option>
+              <option value="recent">Most Recent</option>
+              <option value="oldest">Oldest</option>
+            </select>
+          </div>
+          {% endcomment %}
+        </div>
+
+        <div class="table-responsive">
+          <table class="table" id="supplier-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Profile</th>
+                <th>Supplier ID</th>
+                <th>Supplier Name</th>
+                <th>Supplier Sub Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>GST/UID</th>
+                <th>PAN</th>
+                {% comment %}
+                <th>Account Balance</th>
+                {% endcomment %}
+                <th class="no-sort">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for Supplier in suppliers %}
+                <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td>
+                    <div class="userimgname cust-imgname">
+                      <a href="javascript:void(0);" class="product-img">
+                        {% if Supplier.profile_img %}
+                          <img src="{{ Supplier.profile_img.url }}" alt="{{ Supplier.supplier_name }}" height="40px" style="object-fit: cover" />
+                        {% else %}
+                          <img src="{% static 'asset/images/profile-default.png' %}" alt="Default" />
+                        {% endif %}
+                      </a>
+                    </div>
+                  </td>
+                  <td>{{ Supplier.supplier_id }}</td>
+                  <td>{{ Supplier.supplier_name }}</td>
+                  <td>{{ Supplier.supplier_sub_name|default:'-' }}</td>
+                  <td>{{ Supplier.supplier_email|default:'-' }}</td>
+                  <td>{{ Supplier.supplier_phone|default:'-' }}</td>
+                  <td>{{ Supplier.supplier_address|default:'-' }}</td>
+                  <td>{{ Supplier.supplier_city|default:'-' }}</td>
+                  <td>{{ Supplier.supplier_state }}</td>
+                  <td>{{ Supplier.supplier_gst_or_uid|default:'-' }}</td>
+                  <td>{{ Supplier.supplier_pan|default:'-' }}</td>
+                  {% comment %}
+                  <td>{{ Supplier.supplier_account_balance }}</td>
+                  {% endcomment %}
+                  <td class="action-table-data">
+                    <div class="edit-delete-action">
+                      <!-- View Action -->
+                      <a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#view-product-{{ Supplier.id }}"><i data-feather="eye" class="feather-eye"></i></a>
+                      <!-- View Modal -->
+                      <!-- View Modal -->
+                      <div class="modal fade" id="view-product-{{ Supplier.id }}" tabindex="-1" role="dialog" aria-labelledby="view-product-modal" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered custom-modal-two">
+                          <div class="modal-content">
+                            <div class="modal-header border-0 custom-modal-header">
+                              <h5 class="modal-title">Product Details</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <div class="mb-3">
+                                <div class="userimgname cust-imgname">
+                                  <a href="javascript:void(0);" class="">
+                                    {% if Supplier.profile_img %}
+                                      <img src="{{ Supplier.profile_img.url }}" alt="{{ Supplier.supplier_name }}" height="100px" style="object-fit: cover" />
+                                    {% else %}
+                                      <img src="{% static 'asset/images/profile-default.png' %}" alt="Default" />
+                                    {% endif %}
+                                  </a>
+                                </div>
+                                <div class="mb-3">
+                                  <p>
+                                    <strong>Supplier ID:</strong> {{ Supplier.supplier_id }}
+                                  </p>
+                                </div>
+                                <div class="mb-3">
+                                  <p>
+                                    <strong>Supplier Name:</strong> {{ Supplier.supplier_name }}
+                                  </p>
+                                </div>
+                                <div class="mb-3">
+                                  <p>
+                                    <strong>Supplier Sub Name:</strong>
+                                    {{ Supplier.supplier_sub_name|default:'-' }}
+                                  </p>
+                                </div>
+                              </div>
+                              <div class="mb-3">
+                                <div class="mb-3">
+                                  <p>
+                                    <strong>Email:</strong> {{ Supplier.supplier_email|default:'-' }}
+                                  </p>
+                                </div>
+                              </div>
+                              <div class="mb-3">
+                                <p>
+                                  <strong>Phone:</strong> {{ Supplier.supplier_phone|default:'-' }}
+                                </p>
+                              </div>
+                              <div class="mb-3">
+                                <p>
+                                  <strong>Address:</strong> {{ Supplier.supplier_address|default:'-' }}
+                                </p>
+                              </div>
+                              <div class="mb-3">
+                                <p>
+                                  <strong>City:</strong> {{ Supplier.supplier_city|default:'-' }}
+                                </p>
+                              </div>
+                              <div class="mb-3">
+                                <p>
+                                  <strong>State:</strong> {{ Supplier.supplier_state }}
+                                </p>
+                              </div>
+                              <div class="mb-3">
+                                <p>
+                                  <strong>GST/UID:</strong> {{ Supplier.supplier_gst_or_uid|default:'-' }}
+                                </p>
+                              </div>
+                              <div class="mb-3">
+                                <p>
+                                  <strong>PAN:</strong> {{ Supplier.supplier_pan|default:'-' }}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <a class="me-2 p-2" href="{% url 'billing:supplier_update' Supplier.id %}" ><i data-feather="pen" class="feather-pen"></i></a>
+
+
+                    <!-- View Action -->
+                    <!-- Edit Action -->
+                    {% comment %}
+                    <a class="me-2 p-2" href="{% url 'edit_product' product.id %}"><i data-feather="edit" class="feather-edit"></i></a>
+                    {% endcomment %}
+                    <!-- Delete Action -->
+
+                    {% comment %}
+                    <a class="confirm-text p-2" href="{% url 'billing:product_list_delete' product.id %}"><i data-feather="trash-2" class="feather-trash-2"></i></a>
+                    {% endcomment %}
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        {% include 'base/pagination.html' %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit  -->
+  {% comment %} <div class="modal fade" id="view-units">
+    <div class="modal-dialog modal-dialog-centered custom-modal-two">
+      <div class="modal-content">
+        <div class="page-wrapper-new p-0">
+          <div class="content">
+            <div class="modal-header border-0 custom-modal-header">
+              <div class="page-title">
+                <h4>Supplier Details</h4>
+              </div>
+              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body custom-modal-body">
+              <form action="">
+                <div class="new-employee-field">
+                  <div class="profile-pic-upload"></div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-4 pe-0">
+                    <div class="mb-3">
+                      <label class="form-label">Supplier Name</label>
+                      <input type="text" class="form-control" disabled />
+                    </div>
+                  </div>
+                  <div class="col-lg-4 pe-0">
+                    <div class="mb-3">
+                      <label class="form-label">Email</label>
+                      <input type="email" class="form-control" disabled />
+                    </div>
+                  </div>
+                  <div class="col-lg-4 pe-0">
+                    <div class="input-blocks">
+                      <label class="mb-2">Phone</label>
+                      <input class="form-control form-control-lg group_formcontrol" id="phone" name="phone" type="text" disabled />
+                    </div>
+                  </div>
+                  <div class="col-lg-6 pe-0">
+                    <div class="mb-3">
+                      <label class="form-label">Supplier ID</label>
+                      <input type="text" class="form-control" disabled />
+                    </div>
+                  </div>
+                  <div class="col-lg-6 pe-0">
+                    <div class="mb-3">
+                      <label class="form-label">Opening Account</label>
+                      <input type="number" class="form-control" disabled />
+                    </div>
+                  </div>
+                  <div class="col-lg-12 pe-0">
+                    <div class="mb-3">
+                      <label class="form-label">Address</label>
+                      <textarea class="form-control mb-1" name="" id="" disabled></textarea>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 pe-0">
+                    <div class="mb-3">
+                      <label class="form-label">City</label>
+                      <input type="text" class="form-control" disabled />
+                    </div>
+                  </div>
+                  <div class="col-lg-6 pe-0">
+                    <div class="mb-3">
+                      <label class="form-label">State</label>
+                      <input type="text" class="form-control" disabled />
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="mb-3 input-blocks">
+                      <label class="form-label">Descriptions</label>
+                      <textarea class="form-control mb-1" disabled></textarea>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> {% endcomment %}
+{% endblock %}

@@ -1,0 +1,6 @@
+"name","type","length","leftDigits","rightDigits"
+"VD_ID","STRING","0","0","0"
+"VoucherID","STRING","0","0","0"
+"Particulars","STRING","0","0","0"
+"Amount","STRING","0","0","0"
+"Note","STRING","0","0","0"

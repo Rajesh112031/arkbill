@@ -1,0 +1,41 @@
+<div class="navz">
+    <a href="{% url "billing:dashboard" %}">dashboard</a>
+
+    <a href="{% url "billing:stocks" %}">stocks</a>
+
+    <a href="{% url "billing:add_stock" %}">add_stock</a>
+
+    <a href="{% url "billing:new_brand" %}">new_brand</a>
+
+    <a href="{% url "billing:stock_search" %}">stock_search</a>
+    <a href="{% url "billing:customer_search" %}">customer_search</a>
+
+    <a href="{% url "billing:newcustomer" %}">newcustomer</a>
+    <a href="{% url "billing:customer" %}">Customers</a>
+
+    
+    <a href="{% url "billing:bills" %}">bills</a>
+    <a href="{% url "billing:detailed_bill" 11 %}">detailed_bill</a>
+    <a href="{% url "billing:customer_detail" 1 %}">customer_detail</a>
+    
+    <a href="{% url "billing:login" %}">login</a>
+</div>
+
+<style>
+    .navz{
+        position: fixed;
+        top: 0;
+        right: 0;
+        background-color: transparent;
+        width: 100%;
+        display: flex;
+        justify-content: end;
+        gap: 15px;
+        align-items: center;
+        z-index: 99999;
+    }
+    .navz *{
+        color: red;
+        text-decoration: none;
+    }
+</style>

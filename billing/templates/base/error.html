@@ -1,0 +1,17 @@
+{% if form.errors %}
+
+<div id="errorModal" class="fixed inset-0 flex items-center justify-center bg-opacity-50 z-50">
+  <div class="rounded-lg shadow-lg p-6 w-96">
+    <h2 class="text-xl font-bold text-red-500 mb-4">Error</h2>
+    <ul class="list-disc ml-5">
+      {% for field, errors in form.errors.items %}
+        {% for error in errors %}
+          <li>{{ field }}: {{ error }}</li>
+        {% endfor %}
+      {% endfor %}
+    </ul>
+    <button id="closeModalBtn" class="mt-4 mb-5 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Close</button>
+  </div>
+</div>
+
+{% endif %}

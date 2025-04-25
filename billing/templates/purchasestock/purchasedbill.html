@@ -1,0 +1,61 @@
+{% extends "base/base.html" %}
+{% block body %}
+<div class="content">
+  <div class="page-header">
+    <div class="d-flex justify-content-between align-items-center w-100">
+      <div>
+        <h4>Stocks Purchased Bills</h4>
+        <h6>Review stock purchased bills</h6>
+      </div>
+      <div>
+        <a href="{% url 'billing:purchased_stock_entry' %}" class="btn btn-primary">
+          <i data-feather="plus-circle" class="me-2 "></i>Add New Stocks
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mt-4">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead class="table-light">
+            <tr>
+              <th>#</th>
+              <th>Bill ID</th>
+              <th>Supplier</th>
+              <th>Invoice No</th>
+              <th>Invoice Date</th>
+              <th>Remarks</th>
+              <th>Total Units</th>
+              <th>Total Amount</th>
+              <th>View</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for product in productbills %}
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ product.purchase_bill_id }}</td>
+                <td>{{ product.supplier.supplier_name }}</td>
+                <td>{{ product.invoice_no }}</td>
+                <td>{{ product.invoice_date }}</td>
+                <td>{{ product.remarks }}</td>
+                <td>{{ product.total_units }}</td>
+                <td>₹{{ product.total_amount }}</td>
+                <td>
+                  <a href="{% url 'billing:purchased_stock_bill_detail' product.id %}" class="btn btn-sm btn-info">View</a>
+                </td>
+              </tr>
+
+             
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      {% include "base/pagination.html" %}
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'base/base.html' %}
+
+{% block body %}
+  <div class="container p-5 scroll-space">
+    <h1 class="mb-3">Update Customer</h1>
+    {% if form.errors %}
+      {% include 'base/error.html' %}
+    {% endif %}
+    <form method="POST" enctype="multipart/form-data" action="">
+      {% csrf_token %}
+
+      <div class="modal-title-head mb-4">
+        <h6>Avatar</h6>
+      </div>
+      <div class="new-employee-field mb-4">
+
+        {% if form.profile_img %}
+        <img src="form.profile_img.url" alt="">
+        {% endif %} 
+
+        <div class="profile-pic-upload">
+            <!-- Profile Picture Upload Section -->
+            <div class="profile-pic text-center mb-3">
+                <label for="id_profile_img" class="d-block">
+                    <span class="d-inline-flex align-items-center">
+                        <i data-feather="plus-circle" class="plus-down-add me-2"></i> 
+                        Edit Image
+                    </span>
+                </label>
+            </div>
+            
+            <!-- File Input Field -->
+            <div class="image-upload mb-0">
+                <input 
+                    type="file" 
+                    id="id_profile_img" 
+                    name="profile_img" 
+                    class="form-control"
+                    accept="image/*"
+                />
+            </div>
+            
+            <!-- Change Image Section -->
+            <div class="image-uploads mt-2 text-center">
+                <h4>Change Image</h4>
+            </div>
+        </div>
+        
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4 mb-3">
+          <label class="form-label">Customer Name</label>
+          {{ form.customer_name }}
+        </div>
+        <div class="col-lg-4 mb-3">
+          <label class="form-label">Customer ID</label>
+          {{ form.customer_id }}
+        </div>
+        <div class="col-lg-4 mb-3">
+          <label class="form-label">Email</label>
+          {{ form.customer_email }}
+        </div>
+        <div class="col-lg-4 mb-3">
+          <label class="form-label">Phone</label>
+          {{ form.customer_phone }}
+        </div>
+        <div class="col-lg-12 mb-3">
+          <label class="form-label">Address</label>
+          {{ form.customer_address }}
+        </div>
+        <div class="col-lg-6 mb-3">
+          <label class="form-label">City</label>
+          {{ form.customer_city }}
+        </div>
+        <div class="col-lg-6 mb-3">
+          <label class="form-label">State</label>
+          {{ form.customer_state }}
+        </div>
+        <div class="col-lg-12 mb-3">
+          <label class="form-label">GST/UID</label>
+          {{ form.customer_gst_or_uid }}
+        </div>
+        <div class="col-lg-12 mb-3">
+          <label class="form-label">PAN</label>
+          {{ form.customer_pan }}
+        </div>
+        {% comment %} <div class="col-lg-12 mb-3">
+          <label class="form-label">Account Balance</label>
+          {{ form.customer_account_balance }}
+        </div> {% endcomment %}
+        <div class="col-lg-12 mb-3">
+          <label class="form-label">Description</label>
+          {{ form.customer_description }}
+        </div>
+      </div>
+
+      <div class="text-end mt-4">
+        <button type="reset" class="btn btn-secondary me-2">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

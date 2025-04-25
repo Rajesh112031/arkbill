@@ -1,0 +1,5 @@
+"name","type","length","leftDigits","rightDigits"
+"ID","STRING","0","0","0"
+"InvoiceID","STRING","0","0","0"
+"CommissionPer","STRING","0","0","0"
+"Commission","STRING","0","0","0"

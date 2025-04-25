@@ -1,0 +1,59 @@
+{% extends 'base/base.html' %}
+
+{% block body %}
+  <div class="container p-5 scroll-space">
+    <div class="page-header">
+      <div class="add-item d-flex">
+        <div class="page-title">
+          <h4>Manage Shipping Address</h4>
+        </div>
+      </div>
+
+      <div class="page-btn">
+        <a href="{% url 'billing:shipping_create' %}" class="btn btn-added"><i data-feather="plus-circle" class="me-2"></i>Add New Address</a>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table" id="customer-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Address 1</th>
+            <th>Address 2</th>
+            <th>Contact</th>
+            <th>GSTIN</th>
+            <th>Change Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for object in address %}
+            {% if object.status %}
+              <tr style="border: 5px solid green;">
+                <td>{{ forloop.counter }}</td>
+                <td>{{ object.add_1 }}</td>
+                <td>{{ object.add_2 }}</td>
+                <td>{{ object.contact }}</td>
+                <td>{{ object.gstin }}</td>
+                <td>Active</td>
+              </tr>
+            {% else %}
+              <tr>
+                <form action="{% url 'billing:shipping_update' %}" method="post">
+                    {% csrf_token %}
+                        <input type="text" hidden value="{{ object.id }}" name="id">
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ object.add_1 }}</td>
+                        <td>{{ object.add_2 }}</td>
+                        <td>{{ object.contact }}</td>
+                        <td>{{ object.gstin }}</td>
+                        <td><button class="btn btn-info float-right">Activate</button></td>
+                </form>
+              </tr>
+            {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

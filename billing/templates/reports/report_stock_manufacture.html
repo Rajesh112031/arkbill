@@ -1,0 +1,98 @@
+{% extends "base/base.html" %}
+{% block body %}
+<div class="content">
+  <div class="page-header">
+    <div class="d-flex justify-content-between align-items-center w-100">
+        <div>
+          <h4>Reports</h4>
+          <h6>Stocks Manufacture Report</h6>
+        </div>
+      </div>
+    </div>
+
+    <form method="get">
+     
+      <div class="row">
+        <div class="col-md-6">
+          <label for="billid">Bill Id</label>
+          <input type="text" class="form-control" name="purchase_bill_id" value="{{ purchase_bill_id }}">
+        </div>
+
+        <div class="col-md-6">
+          <label for="billid">Supplier</label>
+          <input type="text" class="form-control" name="supplier_name" value="{{ supplier_name }}">
+        </div>
+
+        <div class="col-md-6">
+          <label for="start_date">Start Date:</label>
+          <input type="date" class="form-control mb-3" name="start_date" value="{{ start_date }}" />
+        </div>
+
+        <div class="col-md-6">
+          <label for="end_date">End Date:</label>
+          <input type="date" class="form-control mb-3" name="end_date" value="{{ end_date }}" />
+        </div>
+
+      </div>
+
+      <button type="submit" class="btn btn-info">Filter</button>
+    </form>
+
+  <div class="card mt-4">
+    <div class="card-body">
+      <div class="table-responsive">
+        {% if reports %}
+        <table class="table table-bordered">
+          <thead class="table-light">
+            <tr>
+              <th>#</th>
+              <th>Bill ID</th>
+              <th>Supplier</th>
+              <th>Invoice No</th>
+              <th>Invoice Date</th>
+              <th>Remarks</th>
+              <th>Total Units</th>
+              <th>Total Amount</th>
+              <th>View</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for product in reports %}
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ product.purchase_bill_id }}</td>
+                <td>{{ product.supplier.supplier_name }}</td>
+                <td>{{ product.invoice_no }}</td>
+                <td>{{ product.invoice_date }}</td>
+                <td>{{ product.remarks }}</td>
+                <td>{{ product.total_units }}</td>
+                <td>₹{{ product.total_amount }}</td>
+                <td>
+                  <a href="{% url 'billing:purchased_stock_bill_detail' product.id %}" class="btn btn-sm btn-info">View</a>
+                </td>
+              </tr>
+
+             
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+          <p>No bills available on filtered date.</p>
+        {% endif %}
+      </div>
+
+      {% include "base/pagination.html" %}
+    </div>
+    
+  </div>
+
+  <div class="card mt-3">
+    <div class="card-body">
+      <h5 class="card-title text-primary">Total Grand Amount</h5>
+      <p class="card-text h4">
+        ₹ {{ total_grand|floatformat:2 }}
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}
